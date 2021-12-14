@@ -13,7 +13,8 @@ import { Switch, Route } from 'react-router-dom';
 import HomePage from 'containers/HomePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
-import GlobalStyle from '../../global-styles';
+import { GlobalStyle } from '@superys/momo-ui';
+// import GlobalStyle from '../../global-styles';
 
 export default function App() {
   return (

@@ -1,4 +1,4 @@
-![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
+![Logo](./images/logo-2.png)
 
 # Postgirl
 
@@ -9,9 +9,9 @@ This is a learning project to apply PWA concepts in a real app. If you want to k
 - [@pollencio](https://github.com/pollencio)
 - [yelis124@gmail.com](mailto:yelis124@gmail.com)
 
-## Screenshots
+## Screenshot
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](./images/screenshots/screenshot-1.jpg)
 
 ## Run Locally
 

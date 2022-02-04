@@ -10,3 +10,6 @@ stats.json
 npm-debug.log
 .idea
 yarn.lock
+
+# Env variables
+.env

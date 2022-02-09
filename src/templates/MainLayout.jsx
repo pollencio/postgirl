@@ -26,8 +26,11 @@ const LayoutContainer = styled.div`
 
   & > header {
     width: 100%;
-    padding: 24px;
+    padding: 10px 24px;
     position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background: #fafafade;
     z-index: 2;
     .logo {
@@ -38,9 +41,6 @@ const LayoutContainer = styled.div`
       height: 40px;
       border-radius: 50%;
       background: #9c9c9c;
-      position: absolute;
-      top: 18px;
-      right: 24px;
     }
   }
 
@@ -50,9 +50,8 @@ const LayoutContainer = styled.div`
     flex: 1;
     height: 100%;
     width: 100%;
-    padding: 76px 30px 30px;
-    margin: 0;
-    margin-bottom: 70px;
+    padding: 20px 24px;
+    margin: 60px 0 70px 0;
     max-width: 500px;
   }
 

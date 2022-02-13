@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import styled from 'styled-components';
 import axios from 'axios';
-import { defaultTheme } from '@superys/momo-ui';
 
-import NoResponseMessage from './molecules/NoResponseMessage';
 import RequestInput from './organisms/RequestInput';
+import RequestArea from './organisms/RequestArea';
+import ResponseArea from './organisms/RequestArea';
 import MainLayout from './templates/MainLayout';
+import TabAreas from './templates/TabAreas';
 
 function App() {
   const [response, setResponse] = useState(null);
@@ -31,7 +31,8 @@ function App() {
   return (
     <MainLayout>
       <RequestInput onSendRequest={sendRequest} isLoading={loading} />
-      <PrimaryTabAreas
+      <TabAreas
+        isPrimary={true}
         tabs={['Details', 'Response']}
         areas={[
           <RequestArea />,
@@ -39,78 +40,6 @@ function App() {
         ]}
       />
     </MainLayout>
-  );
-}
-
-function PrimaryTabAreas({ tabs, areas }) {
-  const [selectedIndex, setSelectedIndex] = useState(0);
-
-  return (
-    <StyledPrimaryTabAreas>
-      <div className="tabs">
-        {tabs.map((tab, index) => (
-          <h5
-            key={`primary-tab-${index}`}
-            className="subtitle"
-            data-selected={selectedIndex === index}
-            onClick={() => setSelectedIndex(index)}
-          >
-            {tab}
-          </h5>
-        ))}
-      </div>
-      <div className="areas">
-        {areas.map((area, index) => (
-          <div
-            key={`primary-area-${index}`}
-            data-selected={selectedIndex === index}
-          >
-            {area}
-          </div>
-        ))}
-      </div>
-    </StyledPrimaryTabAreas>
-  );
-}
-
-const StyledPrimaryTabAreas = styled.div`
-  .tabs {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    & > * {
-      text-align: center;
-      padding: 8px 0;
-      width: 100px;
-    }
-    & > *[data-selected='true'] {
-      border-bottom: 2px solid ${defaultTheme.textColor};
-    }
-  }
-  .areas > * {
-    display: none;
-    &[data-selected='true'] {
-      display: block;
-    }
-  }
-`;
-
-function RequestArea() {
-  return <>Holi</>;
-}
-
-function ResponseArea({ response, error }) {
-  if (!response && !error) {
-    return <NoResponseMessage />;
-  }
-  return (
-    <>
-      {error ? (
-        <code>{error}</code>
-      ) : (
-        <code>{JSON.stringify(response.data)}</code>
-      )}
-    </>
   );
 }
 

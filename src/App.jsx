@@ -2,33 +2,64 @@ import { Button, Icon, Input } from '@superys/momo-ui';
 import { useRef, useState } from 'react';
 import styled from 'styled-components';
 import MainLayout from './templates/MainLayout';
+import axios from 'axios';
 
 function App() {
   const [response, setResponse] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  const onSendRequest = ({ url, type }) => {
-    console.log(`Trying to make ${type} request to ${url}`);
+  const sendRequest = async ({ url, method }) => {
+    console.log(`Trying to make ${method} request to ${url}`);
+    try {
+      setLoading(true);
+      const axiosResponse = await axios({
+        url,
+        method,
+      });
+      console.log(axiosResponse);
+      setResponse(axiosResponse);
+    } catch (error) {
+      console.log(error);
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <MainLayout>
-      <RequestInput onSendRequest={onSendRequest} />
-      {response ? <h1>Holi</h1> : <NoResponseMessage />}
+      <RequestInput onSendRequest={sendRequest} isLoading={loading} />
+      {response ? (
+        <code>{JSON.stringify(response)}</code>
+      ) : error ? (
+        <code>{error}</code>
+      ) : (
+        <NoResponseMessage />
+      )}
     </MainLayout>
   );
 }
 
-function RequestInput({ onSendRequest }) {
-  const typeRef = useRef();
+function RequestInput({ onSendRequest, isLoading }) {
+  const methodRef = useRef();
   const urlRef = useRef();
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onSendRequest({
+      method: methodRef.current.value,
+      url: urlRef.current.value,
+    });
+  };
+
   return (
-    <RequestInputStyled onSend={onSendRequest}>
-      <select ref={typeRef} className="type-input">
+    <RequestInputStyled onSubmit={handleSubmit}>
+      <select ref={methodRef}>
         <option value="get">Get</option>
       </select>
-      <Input ref={urlRef} placeholder="Enter request URL" />
-      <Button color="pink" type="submit" modifiers="small">
+      <Input ref={urlRef} type="url" placeholder="Enter request URL" />
+      <Button color="pink" type="submit" modifiers="small" loading={isLoading}>
         Send
       </Button>
     </RequestInputStyled>
@@ -43,7 +74,7 @@ const RequestInputStyled = styled.form`
     right: 5px;
     top: 6px;
   }
-  .type-input {
+  select {
     font-family: NunitoSans,Verdana;
     font-size: 1rem;
     background-color: #FFFFFF;
@@ -66,6 +97,7 @@ const RequestInputStyled = styled.form`
   input {
     border-radius: 0 30px 30px 0;
     padding-left: 10px;
+    padding-right: 75px;
     width: 100%;
   }
 }`;
@@ -83,7 +115,8 @@ const NoResponseStyled = styled.div`
   text-align: center;
   width: 90%;
   max-width: 270px;
-  margin: 30% auto;
+  margin: 40% auto;
+  opacity: 50%;
 `;
 
 export default App;

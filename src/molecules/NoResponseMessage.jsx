@@ -14,7 +14,7 @@ const NoResponseStyled = styled.div`
   text-align: center;
   width: 90%;
   max-width: 270px;
-  margin: 40% auto;
+  margin: 30% auto;
   opacity: 50%;
 `;
 

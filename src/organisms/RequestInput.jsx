@@ -30,6 +30,7 @@ function RequestInput({ onSendRequest, isLoading }) {
 const RequestInputStyled = styled.form`
   position: relative;
   display: flex;
+  margin-bottom: 25px;
   button {
     position: absolute;
     right: 5px;

@@ -1,4 +1,4 @@
-import NoResponseMessage from './molecules/NoResponseMessage';
+import NoResponseMessage from '../molecules/NoResponseMessage';
 
 function ResponseArea({ response, error }) {
   if (!response && !error) {

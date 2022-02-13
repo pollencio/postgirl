@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import RequestInput from './organisms/RequestInput';
 import RequestArea from './organisms/RequestArea';
-import ResponseArea from './organisms/RequestArea';
+import ResponseArea from './organisms/ResponseArea';
 import MainLayout from './templates/MainLayout';
 import TabAreas from './templates/TabAreas';
 

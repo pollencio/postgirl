@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { defaultTheme, neutral } from '@superys/momo-ui';
 
-const Layout = ({ children }) => {
+const MainLayout = ({ children }) => {
   return (
     <LayoutContainer>
       <header>
@@ -72,4 +72,4 @@ const LayoutContainer = styled.div`
   }
 `;
 
-export default Layout;
+export default MainLayout;

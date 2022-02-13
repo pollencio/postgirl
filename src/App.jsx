@@ -1,8 +1,11 @@
-import { Button, Icon, Input } from '@superys/momo-ui';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
-import MainLayout from './templates/MainLayout';
 import axios from 'axios';
+import { defaultTheme } from '@superys/momo-ui';
+
+import NoResponseMessage from './molecules/NoResponseMessage';
+import RequestInput from './organisms/RequestInput';
+import MainLayout from './templates/MainLayout';
 
 function App() {
   const [response, setResponse] = useState(null);
@@ -13,110 +16,102 @@ function App() {
     console.log(`Trying to make ${method} request to ${url}`);
     try {
       setLoading(true);
-      const axiosResponse = await axios({
-        url,
-        method,
-      });
-      console.log(axiosResponse);
+      const axiosResponse = await axios({ url, method });
       setResponse(axiosResponse);
     } catch (error) {
-      console.log(error);
       setError(error);
     } finally {
       setLoading(false);
     }
   };
 
+  console.log('response', response);
+  console.log('error', error);
+
   return (
     <MainLayout>
       <RequestInput onSendRequest={sendRequest} isLoading={loading} />
-      {response ? (
-        <code>{JSON.stringify(response)}</code>
-      ) : error ? (
-        <code>{error}</code>
-      ) : (
-        <NoResponseMessage />
-      )}
+      <PrimaryTabAreas
+        tabs={['Details', 'Response']}
+        areas={[
+          <RequestArea />,
+          <ResponseArea response={response} error={error} />,
+        ]}
+      />
     </MainLayout>
   );
 }
 
-function RequestInput({ onSendRequest, isLoading }) {
-  const methodRef = useRef();
-  const urlRef = useRef();
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    onSendRequest({
-      method: methodRef.current.value,
-      url: urlRef.current.value,
-    });
-  };
+function PrimaryTabAreas({ tabs, areas }) {
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   return (
-    <RequestInputStyled onSubmit={handleSubmit}>
-      <select ref={methodRef}>
-        <option value="get">Get</option>
-      </select>
-      <Input ref={urlRef} type="url" placeholder="Enter request URL" />
-      <Button color="pink" type="submit" modifiers="small" loading={isLoading}>
-        Send
-      </Button>
-    </RequestInputStyled>
+    <StyledPrimaryTabAreas>
+      <div className="tabs">
+        {tabs.map((tab, index) => (
+          <h5
+            key={`primary-tab-${index}`}
+            className="subtitle"
+            data-selected={selectedIndex === index}
+            onClick={() => setSelectedIndex(index)}
+          >
+            {tab}
+          </h5>
+        ))}
+      </div>
+      <div className="areas">
+        {areas.map((area, index) => (
+          <div
+            key={`primary-area-${index}`}
+            data-selected={selectedIndex === index}
+          >
+            {area}
+          </div>
+        ))}
+      </div>
+    </StyledPrimaryTabAreas>
   );
 }
 
-const RequestInputStyled = styled.form`
-  position: relative;
-  display: flex;
-  button {
-    position: absolute;
-    right: 5px;
-    top: 6px;
-  }
-  select {
-    font-family: NunitoSans,Verdana;
-    font-size: 1rem;
-    background-color: #FFFFFF;
-    color: #333333;
-    padding: 9px 20px 9px 15px;
-    border-radius: 30px 0 0 30px;
-    border: 2px solid #E0E0E0;
-    box-sizing: border-box;
-    -webkit-transition: background-color 0.2s linear,color 0.2s linear, box-shadow 0.2s linear;
-    transition: background-color 0.2s linear,color 0.2s linear, box-shadow 0.2s linear;
-    &:focus {
-      outline: none;
-      box-shadow: 2px 2px 15px rgb(68 140 255 / 30%);
-      border-color: #8DD6FF;
+const StyledPrimaryTabAreas = styled.div`
+  .tabs {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    & > * {
+      text-align: center;
+      padding: 8px 0;
+      width: 100px;
+    }
+    & > *[data-selected='true'] {
+      border-bottom: 2px solid ${defaultTheme.textColor};
     }
   }
-  label {
-    flex-grow: 2;
+  .areas > * {
+    display: none;
+    &[data-selected='true'] {
+      display: block;
+    }
   }
-  input {
-    border-radius: 0 30px 30px 0;
-    padding-left: 10px;
-    padding-right: 75px;
-    width: 100%;
-  }
-}`;
+`;
 
-function NoResponseMessage() {
-  return (
-    <NoResponseStyled>
-      <h4 className="subtitle">Enter a URL and click send to get a response</h4>
-      <Icon icon="butterfly" size={110} />
-    </NoResponseStyled>
-  );
+function RequestArea() {
+  return <>Holi</>;
 }
 
-const NoResponseStyled = styled.div`
-  text-align: center;
-  width: 90%;
-  max-width: 270px;
-  margin: 40% auto;
-  opacity: 50%;
-`;
+function ResponseArea({ response, error }) {
+  if (!response && !error) {
+    return <NoResponseMessage />;
+  }
+  return (
+    <>
+      {error ? (
+        <code>{error}</code>
+      ) : (
+        <code>{JSON.stringify(response.data)}</code>
+      )}
+    </>
+  );
+}
 
 export default App;

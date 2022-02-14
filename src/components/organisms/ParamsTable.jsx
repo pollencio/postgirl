@@ -14,10 +14,14 @@ function ParamsTable() {
     let newParams = [...paramsArray];
     newParams[paramIndex][name] = type === 'checkbox' ? checked : value;
     setParamsArray(newParams);
-    setRequest((prevState) => ({
-      ...prevState,
-      params: getParamsObject(paramsArray),
-    }));
+
+    const paramsObject = getParamsObject(paramsArray);
+    if (Object.keys(paramsObject).length > 0) {
+      setRequest((prevState) => ({
+        ...prevState,
+        params: paramsObject,
+      }));
+    }
   };
 
   const addParam = () => {
@@ -30,19 +34,6 @@ function ParamsTable() {
     const newParams = [...paramsArray];
     newParams.splice(paramIndex, 1);
     setParamsArray(newParams);
-  };
-
-  const getParamsObject = (paramsArray) => {
-    return paramsArray.reduce((acc, item) => {
-      if (item.isSelected === true) {
-        return {
-          ...acc,
-          [item.key]: item.value,
-        };
-      } else {
-        return acc;
-      }
-    }, {});
   };
 
   return (
@@ -100,6 +91,19 @@ function ParamsTable() {
     </StyledParams>
   );
 }
+
+const getParamsObject = (paramsArray) => {
+  return paramsArray.reduce((acc, item) => {
+    if (item.isSelected === true) {
+      return {
+        ...acc,
+        [item.key]: item.value,
+      };
+    } else {
+      return acc;
+    }
+  }, {});
+};
 
 const StyledParams = styled.div`
   .heading {

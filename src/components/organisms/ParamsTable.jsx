@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { Checkbox, Icon, neutral, TertiaryButton } from '@superys/momo-ui';
+import { RequestContext } from '../../state/request';
 
 const NEW_PARAM_STATE = { key: '', value: '', isSelected: false };
 
 function ParamsTable() {
+  const [, setRequest] = useContext(RequestContext);
   const [params, setParams] = useState([{ ...NEW_PARAM_STATE }]);
 
   const handleInputChange = (event, paramIndex) => {
@@ -12,6 +14,10 @@ function ParamsTable() {
     let newParams = [...params];
     newParams[paramIndex][name] = type === 'checkbox' ? checked : value;
     setParams(newParams);
+    setRequest((prevState) => ({
+      ...prevState,
+      params: getParamsObject(newParams),
+    }));
   };
 
   const addParam = () => {
@@ -24,6 +30,19 @@ function ParamsTable() {
     const newParams = [...params];
     newParams.splice(paramIndex, 1);
     setParams(newParams);
+  };
+
+  const getParamsObject = (paramsArray) => {
+    return paramsArray.reduce((acc, item) => {
+      if (item.isSelected === true) {
+        return {
+          ...acc,
+          [item.key]: item.value,
+        };
+      } else {
+        return acc;
+      }
+    }, {});
   };
 
   return (

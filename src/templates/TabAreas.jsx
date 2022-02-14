@@ -36,11 +36,16 @@ const StyledTabAreas = styled.div`
   .tabs {
     display: flex;
     gap: 17px;
-    margin-bottom: 20px;
     ${(props) =>
       props.isPrimary === true
-        ? 'justify-content: center;'
-        : 'justify-content: left;'}
+        ? `
+        justify-content: center;
+        margin-bottom: 20px;
+        `
+        : `
+        justify-content: left;
+        margin-bottom: 30px;
+      `}
   }
   .areas > * {
     display: none;
@@ -76,7 +81,7 @@ const StyledPrimaryTab = styled.h5`
 
 const StyledSecondaryTab = styled.p`
   padding: 3px 0;
-  opacity: 70%;
+  opacity: 65%;
   margin: 0;
   font-weight: bold;
   &[data-selected='true'] {

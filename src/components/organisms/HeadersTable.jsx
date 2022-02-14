@@ -2,14 +2,17 @@ import styled from 'styled-components';
 import useAppContext from '../../state/useAppContext';
 import DynamicTable from '../templates/DynamicTable';
 
-function ParamsTable() {
-  const { setRequestParams } = useAppContext();
+function HeadersTable() {
+  const { setRequestHeaders } = useAppContext();
 
   return (
     <StyledParams>
-      <p className="heading">Query Params</p>
+      <p className="heading">Headers</p>
 
-      <DynamicTable buttonText="Add a param" onTableChange={setRequestParams} />
+      <DynamicTable
+        buttonText="Add a header"
+        onTableChange={setRequestHeaders}
+      />
     </StyledParams>
   );
 }
@@ -20,4 +23,4 @@ const StyledParams = styled.div`
   }
 `;
 
-export default ParamsTable;
+export default HeadersTable;

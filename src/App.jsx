@@ -13,6 +13,7 @@ function App() {
   const [loading, setLoading] = useState(false);
 
   console.log('params', request.params);
+  console.log('headers', request.headers);
   // console.log('response', response);
   // console.log('error', error);
 

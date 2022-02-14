@@ -3,33 +3,33 @@ import styled from 'styled-components';
 import { Checkbox, Icon, neutral, TertiaryButton } from '@superys/momo-ui';
 import { RequestContext } from '../../state/request';
 
-const NEW_PARAM_STATE = { key: '', value: '', isSelected: false };
+const NEW_PARAM_STATE = { key: '', value: '', isSelected: true };
 
 function ParamsTable() {
   const [, setRequest] = useContext(RequestContext);
-  const [params, setParams] = useState([{ ...NEW_PARAM_STATE }]);
+  const [paramsArray, setParamsArray] = useState([]);
 
   const handleInputChange = (event, paramIndex) => {
     const { name, value, checked, type } = event.target;
-    let newParams = [...params];
+    let newParams = [...paramsArray];
     newParams[paramIndex][name] = type === 'checkbox' ? checked : value;
-    setParams(newParams);
+    setParamsArray(newParams);
     setRequest((prevState) => ({
       ...prevState,
-      params: getParamsObject(newParams),
+      params: getParamsObject(paramsArray),
     }));
   };
 
   const addParam = () => {
-    const newParams = [...params];
+    const newParams = [...paramsArray];
     newParams.push({ ...NEW_PARAM_STATE });
-    setParams(newParams);
+    setParamsArray(newParams);
   };
 
   const removeParam = (paramIndex) => {
-    const newParams = [...params];
+    const newParams = [...paramsArray];
     newParams.splice(paramIndex, 1);
-    setParams(newParams);
+    setParamsArray(newParams);
   };
 
   const getParamsObject = (paramsArray) => {
@@ -59,7 +59,7 @@ function ParamsTable() {
           </tr>
         </thead>
         <tbody>
-          {params.map((param, index) => (
+          {paramsArray.map((param, index) => (
             <tr key={`param-${index}`}>
               <td>
                 <Checkbox

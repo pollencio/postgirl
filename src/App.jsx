@@ -1,18 +1,22 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import axios from 'axios';
+import { RequestContext } from './state/request';
 
-import RequestInput from './organisms/RequestInput';
-import RequestArea from './organisms/RequestArea';
-import ResponseArea from './organisms/ResponseArea';
-import MainLayout from './templates/MainLayout';
-import TabAreas from './templates/TabAreas';
+import RequestInput from './components/organisms/RequestInput';
+import RequestArea from './components/organisms/RequestArea';
+import ResponseArea from './components/organisms/ResponseArea';
+import MainLayout from './components/templates/MainLayout';
+import TabAreas from './components/templates/TabAreas';
 
 function App() {
+  const [request] = useContext(RequestContext);
   const [response, setResponse] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const sendRequest = async ({ url, method }) => {
+  console.log(request.params);
+
+  const sendRequest = async ({ url, method, params }) => {
     console.log(`Trying to make ${method} request to ${url}`);
     try {
       setLoading(true);
@@ -25,8 +29,8 @@ function App() {
     }
   };
 
-  console.log('response', response);
-  console.log('error', error);
+  // console.log('response', response);
+  // console.log('error', error);
 
   return (
     <MainLayout>

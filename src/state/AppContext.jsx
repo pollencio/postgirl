@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 
-const AppContext = React.createContext([
-  { request: {}, response: {} },
-  () => {},
-]);
+const INITIAL_APP_STATE = {
+  request: {},
+  response: {},
+  error: null,
+  isLoading: false,
+};
+
+const AppContext = React.createContext([INITIAL_APP_STATE, () => {}]);
 
 const AppProvider = (props) => {
-  const [state, setState] = useState({ request: {}, response: {} });
+  const [state, setState] = useState(INITIAL_APP_STATE);
 
   return (
     <AppContext.Provider value={[state, setState]}>

@@ -1,9 +1,13 @@
+import useAppContext from '../../state/useAppContext';
 import NoResponseMessage from '../molecules/NoResponseMessage';
 
-function ResponseArea({ response, error }) {
+function ResponseArea() {
+  const { response, error } = useAppContext();
+
   if (!response && !error) {
     return <NoResponseMessage />;
   }
+
   return (
     <>
       {error ? (

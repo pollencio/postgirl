@@ -3,7 +3,7 @@ import useAppContext from '../../state/useAppContext';
 import DynamicTable from '../templates/DynamicTable';
 
 function HeadersTable() {
-  const { setRequestHeaders } = useAppContext();
+  const { setRequestElement } = useAppContext();
 
   return (
     <StyledParams>
@@ -11,7 +11,7 @@ function HeadersTable() {
 
       <DynamicTable
         buttonText="Add a header"
-        onTableChange={setRequestHeaders}
+        onTableChange={(headers) => setRequestElement('headers', headers)}
       />
     </StyledParams>
   );

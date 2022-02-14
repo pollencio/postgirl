@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import useAppContext from './state/useAppContext';
 
@@ -12,7 +12,7 @@ function App() {
   const { request, response, setResponse } = useAppContext();
   const [loading, setLoading] = useState(false);
 
-  // console.log('params', request.params);
+  console.log('params', request.params);
   // console.log('response', response);
   // console.log('error', error);
 

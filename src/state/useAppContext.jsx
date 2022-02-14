@@ -5,12 +5,10 @@ const useAppContext = () => {
   const [state, setState] = useContext(AppContext);
 
   function setParams(params) {
-    if (Object.keys(params).length > 0) {
-      setState((prevState) => ({
-        ...prevState,
-        request: { ...state.request, params },
-      }));
-    }
+    setState((prevState) => ({
+      ...prevState,
+      request: { ...state.request, params },
+    }));
   }
 
   return {

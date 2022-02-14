@@ -15,7 +15,7 @@ function RequestArea() {
 }
 
 function Params() {
-  const [params, setParams] = useState([NEW_PARAM_STATE]);
+  const [params, setParams] = useState([{ ...NEW_PARAM_STATE }]);
 
   const handleInputChange = (event, paramIndex) => {
     const { name, value, checked, type } = event.target;
@@ -26,7 +26,7 @@ function Params() {
 
   const addParam = () => {
     const newParams = [...params];
-    newParams.push(NEW_PARAM_STATE);
+    newParams.push({ ...NEW_PARAM_STATE });
     setParams(newParams);
   };
 
@@ -36,7 +36,7 @@ function Params() {
     setParams(newParams);
   };
 
-  console.log(params);
+  console.log(params, NEW_PARAM_STATE);
 
   return (
     <StyledParams>

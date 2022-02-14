@@ -2,14 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { GlobalStyle } from '@superys/momo-ui';
-import { RequestProvider } from './state/request';
+import { AppProvider } from './state/AppContext';
 
 ReactDOM.render(
   <React.StrictMode>
     <GlobalStyle />
-    <RequestProvider>
+    <AppProvider>
       <App />
-    </RequestProvider>
+    </AppProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 );

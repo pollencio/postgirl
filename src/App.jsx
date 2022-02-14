@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import axios from 'axios';
-import { RequestContext } from './state/request';
+import useAppContext from './state/useAppContext';
 
 import RequestInput from './components/organisms/RequestInput';
 import RequestArea from './components/organisms/RequestArea';
@@ -9,12 +9,12 @@ import MainLayout from './components/templates/MainLayout';
 import TabAreas from './components/templates/TabAreas';
 
 function App() {
-  const [request] = useContext(RequestContext);
-  const [response, setResponse] = useState(null);
-  const [error, setError] = useState(null);
+  const { request, response, setResponse } = useAppContext();
   const [loading, setLoading] = useState(false);
 
-  console.log(request.params);
+  // console.log('params', request.params);
+  // console.log('response', response);
+  // console.log('error', error);
 
   const sendRequest = async ({ url, method, params }) => {
     console.log(`Trying to make ${method} request to ${url}`);
@@ -29,9 +29,6 @@ function App() {
     }
   };
 
-  // console.log('response', response);
-  // console.log('error', error);
-
   return (
     <MainLayout>
       <RequestInput onSendRequest={sendRequest} isLoading={loading} />
@@ -40,7 +37,7 @@ function App() {
         tabs={['Details', 'Response']}
         areas={[
           <RequestArea />,
-          <ResponseArea response={response} error={error} />,
+          <ResponseArea response={response} error={response.error} />,
         ]}
       />
     </MainLayout>

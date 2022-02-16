@@ -4,7 +4,7 @@ import { Checkbox, Icon, neutral, TertiaryButton } from '@superys/momo-ui';
 
 const NEW_ROW_STATE = { key: '', value: '', isSelected: true };
 
-function DynamicTable({ isEditable, onTableChange, buttonText }) {
+function DynamicTable({ tableKey, onTableChange, buttonText }) {
   const [state, setState] = useState([]);
 
   const setNewState = (newState) => {
@@ -44,12 +44,12 @@ function DynamicTable({ isEditable, onTableChange, buttonText }) {
           </tr>
         </thead>
         <tbody>
-          {state.map((param, index) => (
-            <tr key={`param-${index}`}>
+          {state.map((row, index) => (
+            <tr key={`${tableKey}-table-row-${index}`}>
               <td>
                 <Checkbox
                   name="isSelected"
-                  checked={param.isSelected}
+                  checked={row.isSelected}
                   onChange={(e) => handleInputChange(e, index)}
                 />
               </td>
@@ -57,7 +57,7 @@ function DynamicTable({ isEditable, onTableChange, buttonText }) {
                 <input
                   name="key"
                   placeholder="key"
-                  value={param.key}
+                  value={row.key}
                   onChange={(e) => handleInputChange(e, index)}
                 />
               </td>
@@ -65,15 +65,13 @@ function DynamicTable({ isEditable, onTableChange, buttonText }) {
                 <input
                   name="value"
                   placeholder="value"
-                  value={param.value}
+                  value={row.value}
                   onChange={(e) => handleInputChange(e, index)}
                 />
               </td>
-              {isEditable ? (
-                <td onClick={() => removeRow(index)}>
-                  <Icon icon="trash" weight="bold" />
-                </td>
-              ) : null}
+              <td onClick={() => removeRow(index)}>
+                <Icon icon="trash" weight="bold" />
+              </td>
             </tr>
           ))}
         </tbody>

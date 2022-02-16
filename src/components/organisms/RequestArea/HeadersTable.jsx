@@ -10,7 +10,7 @@ function HeadersTable() {
       <p className="heading">Headers</p>
 
       <DynamicTable
-        isEditable={true}
+        tableKey="request-headers"
         buttonText="Add a header"
         onTableChange={(headers) => setRequestElement('headers', headers)}
       />

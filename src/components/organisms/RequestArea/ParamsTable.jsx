@@ -10,7 +10,7 @@ function ParamsTable() {
       <p className="heading">Query Params</p>
 
       <DynamicTable
-        isEditable={true}
+        tableKey="request-params"
         buttonText="Add a param"
         onTableChange={(params) => setRequestElement('params', params)}
       />

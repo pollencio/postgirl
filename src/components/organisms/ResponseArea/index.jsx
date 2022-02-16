@@ -1,7 +1,8 @@
 import useAppContext from '../../../state/useAppContext';
 import NoResponseMessage from '../../molecules/NoResponseMessage';
 import TabAreas from '../../templates/TabAreas';
-import HeadersTable from './HeadersTable';
+import ResponseHeaders from './ResponseHeaders';
+import ResponseCookies from './ResponseCookies';
 
 function ResponseArea() {
   const { response, error, isLoading, cancelRequest } = useAppContext();
@@ -21,7 +22,7 @@ function ResponseArea() {
   return (
     <TabAreas
       tabs={[`Body`, `Cookies`, `Headers`]}
-      areas={[<Body />, 'Cookies', <HeadersTable />]}
+      areas={[<Body />, <ResponseCookies />, <ResponseHeaders />]}
     />
   );
 }

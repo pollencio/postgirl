@@ -1,5 +1,5 @@
-import ParamsTable from './ParamsTable';
-import HeadersTable from './HeadersTable';
+import RequestParams from './RequestParams';
+import RequestHeaders from './RequestHeaders';
 import TabAreas from '../../templates/TabAreas';
 import useAppContext from '../../../state/useAppContext';
 
@@ -13,7 +13,7 @@ function RequestArea() {
   return (
     <TabAreas
       tabs={[`Params (${paramsNumber})`, `Headers (${headersNumber})`, 'Body']}
-      areas={[<ParamsTable />, <HeadersTable />, 'Body']}
+      areas={[<RequestParams />, <RequestHeaders />, 'Body']}
     />
   );
 }

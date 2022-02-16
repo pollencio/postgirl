@@ -1,9 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { defaultTheme } from '@superys/momo-ui';
 
-function TabAreas({ isPrimary, tabs, areas }) {
+function TabAreas({
+  isPrimary,
+  tabs,
+  areas,
+  selectedIndex: propsSelectedIndex,
+}) {
   const [selectedIndex, setSelectedIndex] = useState(0);
+
+  useEffect(() => {
+    // if parent wants to select a tab
+    if (propsSelectedIndex && propsSelectedIndex !== null) {
+      setSelectedIndex(propsSelectedIndex);
+    }
+  }, [propsSelectedIndex]);
 
   return (
     <StyledTabAreas isPrimary={isPrimary}>

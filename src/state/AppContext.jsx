@@ -7,10 +7,10 @@ const INITIAL_APP_STATE = {
   isLoading: false,
 };
 
-const AppContext = React.createContext([INITIAL_APP_STATE, () => {}]);
+const AppContext = React.createContext([{ ...INITIAL_APP_STATE }, () => {}]);
 
 const AppProvider = (props) => {
-  const [state, setState] = useState(INITIAL_APP_STATE);
+  const [state, setState] = useState({ ...INITIAL_APP_STATE });
 
   return (
     <AppContext.Provider value={[state, setState]}>

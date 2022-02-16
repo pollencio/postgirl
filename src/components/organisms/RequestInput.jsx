@@ -1,17 +1,18 @@
 import { useRef } from 'react';
 import styled from 'styled-components';
 import { Button, Input } from '@superys/momo-ui';
+import useAppContext from '../../state/useAppContext';
 
-function RequestInput({ onSendRequest, isLoading }) {
+function RequestInput() {
   const methodRef = useRef();
   const urlRef = useRef();
+  const { setRequestElement, isLoading, sendRequest } = useAppContext();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    onSendRequest({
-      method: methodRef.current.value,
-      url: urlRef.current.value,
-    });
+    setRequestElement('method', methodRef.current.value);
+    setRequestElement('url', urlRef.current.value);
+    sendRequest();
   };
 
   return (

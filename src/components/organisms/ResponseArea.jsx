@@ -11,7 +11,7 @@ function ResponseArea() {
   return (
     <>
       {error ? (
-        <code>{error}</code>
+        <code>{error.message}</code>
       ) : (
         <code>{JSON.stringify(response.data)}</code>
       )}

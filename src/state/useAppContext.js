@@ -1,8 +1,10 @@
 import { useContext } from 'react';
+import axios from 'axios';
 import { AppContext } from './AppContext';
 
 function useAppContext() {
   const [state, setState] = useContext(AppContext);
+  console.log('live changes to state!', state);
 
   const setStateElement = (key, value) => {
     setState((prevState) => ({ ...prevState, [key]: value }));
@@ -13,16 +15,17 @@ function useAppContext() {
   };
 
   const sendRequest = async () => {
-    console.log(`Attempting to make ${method} request to ${url}`);
-    console.log('Request config: ', state.request);
+    console.log(
+      `Attempting to make ${state.request.method} request to ${state.request.url}`,
+    );
     try {
       setStateElement('isLoading', true);
-      // setStateElement('response', await axios(state.request));
       setStateElement('error', null);
+      setStateElement('response', await axios(state.request));
     } catch (error) {
       setStateElement('error', error);
     } finally {
-      // setStateElement('isLoading', false);
+      setStateElement('isLoading', false);
     }
   };
 

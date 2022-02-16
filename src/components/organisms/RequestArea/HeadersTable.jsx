@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import useAppContext from '../../state/useAppContext';
-import DynamicTable from '../templates/DynamicTable';
+import useAppContext from '../../../state/useAppContext';
+import DynamicTable from '../../templates/DynamicTable';
 
 function HeadersTable() {
   const { setRequestElement } = useAppContext();
@@ -10,6 +10,7 @@ function HeadersTable() {
       <p className="heading">Headers</p>
 
       <DynamicTable
+        isEditable={true}
         buttonText="Add a header"
         onTableChange={(headers) => setRequestElement('headers', headers)}
       />

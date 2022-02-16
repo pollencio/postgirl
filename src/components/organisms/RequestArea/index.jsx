@@ -1,7 +1,7 @@
 import ParamsTable from './ParamsTable';
 import HeadersTable from './HeadersTable';
-import TabAreas from '../templates/TabAreas';
-import useAppContext from '../../state/useAppContext';
+import TabAreas from '../../templates/TabAreas';
+import useAppContext from '../../../state/useAppContext';
 
 function RequestArea() {
   const {

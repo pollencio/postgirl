@@ -4,7 +4,7 @@ import { Checkbox, Icon, neutral, TertiaryButton } from '@superys/momo-ui';
 
 const NEW_ROW_STATE = { key: '', value: '', isSelected: true };
 
-function DynamicTable({ onTableChange, buttonText }) {
+function DynamicTable({ isEditable, onTableChange, buttonText }) {
   const [state, setState] = useState([]);
 
   const setNewState = (newState) => {
@@ -69,9 +69,11 @@ function DynamicTable({ onTableChange, buttonText }) {
                   onChange={(e) => handleInputChange(e, index)}
                 />
               </td>
-              <td onClick={() => removeRow(index)}>
-                <Icon icon="trash" weight="bold" />
-              </td>
+              {isEditable ? (
+                <td onClick={() => removeRow(index)}>
+                  <Icon icon="trash" weight="bold" />
+                </td>
+              ) : null}
             </tr>
           ))}
         </tbody>

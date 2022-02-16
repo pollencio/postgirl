@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import useAppContext from '../../state/useAppContext';
-import DynamicTable from '../templates/DynamicTable';
+import useAppContext from '../../../state/useAppContext';
+import DynamicTable from '../../templates/DynamicTable';
 
 function ParamsTable() {
   const { setRequestElement } = useAppContext();
@@ -10,6 +10,7 @@ function ParamsTable() {
       <p className="heading">Query Params</p>
 
       <DynamicTable
+        isEditable={true}
         buttonText="Add a param"
         onTableChange={(params) => setRequestElement('params', params)}
       />

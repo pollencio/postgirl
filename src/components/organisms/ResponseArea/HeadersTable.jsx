@@ -1,17 +1,12 @@
-import styled from 'styled-components';
 import useAppContext from '../../../state/useAppContext';
-import DynamicTable from '../../templates/DynamicTable';
+import StaticTable from '../../templates/StaticTable';
 
 function HeadersTable() {
-  const { setRequestElement } = useAppContext();
+  const {
+    response: { headers },
+  } = useAppContext();
 
-  return (
-    <DynamicTable
-      isEditable={false}
-      buttonText="Add a header"
-      onTableChange={(headers) => setRequestElement('headers', headers)}
-    />
-  );
+  return <StaticTable tableKey="response-headers" data={headers} />;
 }
 
 export default HeadersTable;

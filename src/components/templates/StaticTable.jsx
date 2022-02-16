@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { neutral } from '@superys/momo-ui';
 
 function StaticTable({ tableKey, data }) {
   return (
@@ -6,18 +7,15 @@ function StaticTable({ tableKey, data }) {
       <StyledTable>
         <thead>
           <tr>
-            <th></th>
             <th>KEY</th>
             <th>VALUE</th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
-          {data.map((item, index) => (
+          {Object.keys(data).map((key, index) => (
             <tr key={`${tableKey}-table-item-${index}`}>
-              <td></td>
-              <td>{item.key}</td>
-              <td>{item.value}</td>
+              <td>{key}</td>
+              <td>{data[key]}</td>
             </tr>
           ))}
         </tbody>
@@ -38,11 +36,6 @@ const StyledTable = styled.table`
   th:first-child,
   td:first-child {
     padding: 7px;
-  }
-  th:last-child,
-  td:last-child {
-    border: none;
-    min-width: 20px;
   }
   th,
   td {

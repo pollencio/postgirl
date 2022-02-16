@@ -29,7 +29,7 @@ const NoResponseStyled = styled.div`
   text-align: center;
   width: 90%;
   max-width: 270px;
-  margin: 30% auto;
+  margin: 15% auto;
   opacity: 50%;
 `;
 

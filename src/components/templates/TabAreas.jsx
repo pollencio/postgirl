@@ -7,6 +7,7 @@ function TabAreas({
   tabs,
   areas,
   selectedIndex: propsSelectedIndex,
+  metadata,
 }) {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
@@ -30,6 +31,9 @@ function TabAreas({
           />
         ))}
       </div>
+
+      {metadata ? <div className="metadata">{metadata}</div> : null}
+
       <div className="areas">
         {areas.map((area, index) => (
           <div
@@ -58,6 +62,9 @@ const StyledTabAreas = styled.div`
         justify-content: left;
         margin-bottom: 30px;
       `}
+  }
+  .metadata {
+    margin-bottom: 13px;
   }
   .areas > * {
     display: none;

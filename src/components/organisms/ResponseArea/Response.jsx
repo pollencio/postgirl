@@ -4,6 +4,7 @@ import NoResponseMessage from '../../molecules/NoResponseMessage';
 import TabAreas from '../../templates/TabAreas';
 import ResponseHeaders from './components/ResponseHeaders';
 import ResponseCookies from './components/ResponseCookies';
+import ResponseBody from './components/ResponseBody';
 import { blue, neutral } from '@superys/momo-ui';
 
 function ResponseArea() {
@@ -26,7 +27,7 @@ function ResponseArea() {
     <TabAreas
       tabs={[`Body`, `Cookies`, `Headers (${headersNumber})`]}
       metadata={<ResponseMetadata status={status} time={time} size={size} />}
-      areas={[<Body />, <ResponseCookies />, <ResponseHeaders />]}
+      areas={[<ResponseBody />, <ResponseCookies />, <ResponseHeaders />]}
     />
   );
 }
@@ -59,19 +60,5 @@ const StyledMetadata = styled.div`
     color: ${blue[300]};
   }
 `;
-
-function Body() {
-  const { response, error } = useAppContext();
-
-  return (
-    <>
-      {error ? (
-        <code>{error.message}</code>
-      ) : (
-        <code>{JSON.stringify(response.data)}</code>
-      )}
-    </>
-  );
-}
 
 export default ResponseArea;

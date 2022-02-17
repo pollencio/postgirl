@@ -12,12 +12,13 @@ function StaticTable({ tableKey, data }) {
           </tr>
         </thead>
         <tbody>
-          {Object.keys(data).map((key, index) => (
-            <tr key={`${tableKey}-table-item-${index}`}>
-              <td>{key}</td>
-              <td>{data[key]}</td>
-            </tr>
-          ))}
+          {data &&
+            Object.keys(data).map((key, index) => (
+              <tr key={`${tableKey}-table-item-${index}`}>
+                <td>{key}</td>
+                <td>{data[key]}</td>
+              </tr>
+            ))}
         </tbody>
       </StyledTable>
     </div>

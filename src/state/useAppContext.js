@@ -1,5 +1,6 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import axios from 'axios';
+import prettyBytes from 'pretty-bytes';
 import { AppContext } from './AppContext';
 
 // set the startTime
@@ -47,17 +48,16 @@ function useAppContext() {
         return error;
       })
       .then((response) => {
-        setStateElement('response', response);
+        setStateElement('response', {
+          ...response,
+          time: response.customData.time,
+          size: prettyBytes(
+            JSON.stringify(response.data).length +
+              JSON.stringify(response.headers).length,
+          ),
+        });
         setStateElement('isLoading', false);
       });
-
-    // try {
-    //   setStateElement('response', await axios(state.request));
-    // } catch (error) {
-    //   setStateElement('error', error);
-    // } finally {
-    //   setStateElement('isLoading', false);
-    // }
   };
 
   const cancelRequest = () => console.log('Attempting to cancel request');

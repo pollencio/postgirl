@@ -1,7 +1,7 @@
 import useAppContext from '../../../state/useAppContext';
 import StaticTable from '../../templates/StaticTable';
 
-function HeadersTable() {
+function ResponseHeaders() {
   const {
     response: { headers },
   } = useAppContext();
@@ -9,4 +9,4 @@ function HeadersTable() {
   return <StaticTable tableKey="response-headers" data={headers} />;
 }
 
-export default HeadersTable;
+export default ResponseHeaders;

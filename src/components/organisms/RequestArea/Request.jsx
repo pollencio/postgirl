@@ -1,5 +1,5 @@
-import RequestParams from './RequestParams';
-import RequestHeaders from './RequestHeaders';
+import RequestParams from './components/RequestParams';
+import RequestHeaders from './components/RequestHeaders';
 import TabAreas from '../../templates/TabAreas';
 import useAppContext from '../../../state/useAppContext';
 

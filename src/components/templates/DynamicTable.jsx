@@ -4,7 +4,7 @@ import { Checkbox, Icon, neutral, TertiaryButton } from '@superys/momo-ui';
 
 const NEW_ROW_STATE = { key: '', value: '', isSelected: true };
 
-function DynamicTable({ tableKey, onTableChange, buttonText }) {
+function DynamicTable({ tableKey, onTableChange, buttonText, noDataMessage }) {
   const [state, setState] = useState([]);
 
   const setNewState = (newState) => {
@@ -33,56 +33,60 @@ function DynamicTable({ tableKey, onTableChange, buttonText }) {
   };
 
   return (
-    <div>
-      <StyledTable>
-        <thead>
-          <tr>
-            <th></th>
-            <th>KEY</th>
-            <th>VALUE</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {state.map((row, index) => (
-            <tr key={`${tableKey}-table-row-${index}`}>
-              <td>
-                <Checkbox
-                  name="isSelected"
-                  checked={row.isSelected}
-                  onChange={(e) => handleInputChange(e, index)}
-                />
-              </td>
-              <td>
-                <input
-                  name="key"
-                  placeholder="key"
-                  value={row.key}
-                  onChange={(e) => handleInputChange(e, index)}
-                />
-              </td>
-              <td>
-                <input
-                  name="value"
-                  placeholder="value"
-                  value={row.value}
-                  onChange={(e) => handleInputChange(e, index)}
-                />
-              </td>
-              <td onClick={() => removeRow(index)}>
-                <Icon icon="trash" weight="bold" />
-              </td>
+    <>
+      {state.length === 0 ? (
+        noDataMessage
+      ) : (
+        <StyledTable>
+          <thead>
+            <tr>
+              <th></th>
+              <th>KEY</th>
+              <th>VALUE</th>
+              <th></th>
             </tr>
-          ))}
-        </tbody>
-      </StyledTable>
+          </thead>
+          <tbody>
+            {state.map((row, index) => (
+              <tr key={`${tableKey}-table-row-${index}`}>
+                <td>
+                  <Checkbox
+                    name="isSelected"
+                    checked={row.isSelected}
+                    onChange={(e) => handleInputChange(e, index)}
+                  />
+                </td>
+                <td>
+                  <input
+                    name="key"
+                    placeholder="key"
+                    value={row.key}
+                    onChange={(e) => handleInputChange(e, index)}
+                  />
+                </td>
+                <td>
+                  <input
+                    name="value"
+                    placeholder="value"
+                    value={row.value}
+                    onChange={(e) => handleInputChange(e, index)}
+                  />
+                </td>
+                <td onClick={() => removeRow(index)}>
+                  <Icon icon="trash" weight="bold" />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </StyledTable>
+      )}
 
       <center>
         <TertiaryButton modifiers="small" onClick={addRow}>
           {buttonText}
         </TertiaryButton>
       </center>
-    </div>
+    </>
   );
 }
 

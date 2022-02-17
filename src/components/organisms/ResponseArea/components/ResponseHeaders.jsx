@@ -1,5 +1,5 @@
-import useAppContext from '../../../state/useAppContext';
-import StaticTable from '../../templates/StaticTable';
+import useAppContext from '../../../../state/useAppContext';
+import StaticTable from '../../../templates/StaticTable';
 
 function ResponseHeaders() {
   const {

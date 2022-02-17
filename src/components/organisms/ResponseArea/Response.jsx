@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import useAppContext from '../../../state/useAppContext';
 import NoResponseMessage from '../../molecules/NoResponseMessage';
 import TabAreas from '../../templates/TabAreas';
-import ResponseHeaders from './ResponseHeaders';
-import ResponseCookies from './ResponseCookies';
+import ResponseHeaders from './components/ResponseHeaders';
+import ResponseCookies from './components/ResponseCookies';
 import { blue, neutral } from '@superys/momo-ui';
 
 function ResponseArea() {

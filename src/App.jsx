@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import useAppContext from './state/useAppContext';
 import RequestInput from './components/organisms/RequestInput';
-import RequestArea from './components/organisms/RequestArea';
-import ResponseArea from './components/organisms/ResponseArea';
+import RequestArea from './components/organisms/RequestArea/Request';
+import ResponseArea from './components/organisms/ResponseArea/Response';
 import MainLayout from './components/templates/MainLayout';
 import TabAreas from './components/templates/TabAreas';
 

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import useAppContext from '../../../state/useAppContext';
-import DynamicTable from '../../templates/DynamicTable';
+import useAppContext from '../../../../state/useAppContext';
+import NoDataMessage from '../../../molecules/NoDataMessage';
+import DynamicTable from '../../../templates/DynamicTable';
 
 function ParamsTable() {
   const { setRequestElement } = useAppContext();
@@ -13,6 +14,7 @@ function ParamsTable() {
         tableKey="request-params"
         buttonText="Add a param"
         onTableChange={(params) => setRequestElement('params', params)}
+        noDataMessage={<NoDataMessage icon="circle-wavy-question" />}
       />
     </StyledParams>
   );

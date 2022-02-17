@@ -27,15 +27,9 @@ const NoResponseStyled = styled.div`
   width: 90%;
   max-width: 270px;
   margin: 30% auto;
-  opacity: 50%;
 
-  ${(props) =>
-    props.error
-      ? `
-    color: ${red[200]};
-    opacity: 100%;
-      `
-      : ''}
+  ${({ error }) => (error ? `color: ${red[200]};` : '')}
+  ${({ isLoading, error }) => (!isLoading && !error ? 'opacity: 50%;' : '')}
 `;
 
 export default NoResponseMessage;

@@ -9,7 +9,7 @@ import { defaultTheme, blue, neutral } from '@superys/momo-ui';
 function ResponseArea() {
   const { response, error, isLoading, cancelRequest } = useAppContext();
 
-  if (Object.keys(response).length === 0) {
+  if (Object.keys(response || {}).length === 0) {
     return (
       <NoResponseMessage
         error={error}
@@ -19,13 +19,13 @@ function ResponseArea() {
     );
   }
 
-  const { status, headers } = response;
+  const { status, headers, customData } = response;
   const headersNumber = Object.keys(headers || {}).length;
 
   return (
     <TabAreas
       tabs={[`Body`, `Cookies`, `Headers (${headersNumber})`]}
-      metadata={<ResponseMetadata status={status} />}
+      metadata={<ResponseMetadata status={status} time={customData.time} />}
       areas={[<Body />, <ResponseCookies />, <ResponseHeaders />]}
     />
   );

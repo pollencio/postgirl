@@ -1,6 +1,26 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import axios from 'axios';
 import { AppContext } from './AppContext';
+
+// set the startTime
+axios.interceptors.request.use((request) => {
+  request.customData = request.customData || {};
+  request.customData.startTime = new Date().getTime();
+  return request;
+});
+
+// set the endTime
+axios.interceptors.response.use(updateEndTime, (error) => {
+  console.log('INTERCEPTOR ERROR', error);
+  return Promise.reject(updateEndTime(error.response));
+});
+
+function updateEndTime(response) {
+  response.customData = response.customData || {};
+  response.customData.time =
+    new Date().getTime() - response.config.customData.startTime;
+  return response;
+}
 
 function useAppContext() {
   const [state, setState] = useContext(AppContext);
@@ -14,19 +34,30 @@ function useAppContext() {
     setStateElement('request', { ...state.request, [key]: value });
   };
 
-  const sendRequest = async () => {
+  const sendRequest = () => {
     console.log(
       `Attempting to make ${state.request.method} request to ${state.request.url}`,
     );
-    try {
-      setStateElement('isLoading', true);
-      setStateElement('error', null);
-      setStateElement('response', await axios(state.request));
-    } catch (error) {
-      setStateElement('error', error);
-    } finally {
-      setStateElement('isLoading', false);
-    }
+    setStateElement('isLoading', true);
+    setStateElement('error', null);
+
+    axios(state.request)
+      .catch((error) => {
+        setStateElement('isLoading', false);
+        return error;
+      })
+      .then((response) => {
+        setStateElement('response', response);
+        setStateElement('isLoading', false);
+      });
+
+    // try {
+    //   setStateElement('response', await axios(state.request));
+    // } catch (error) {
+    //   setStateElement('error', error);
+    // } finally {
+    //   setStateElement('isLoading', false);
+    // }
   };
 
   const cancelRequest = () => console.log('Attempting to cancel request');

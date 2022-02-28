@@ -1,4 +1,4 @@
-![Logo](./images/logo-2.png)
+![Logo](./images/logo.png)
 
 # Postgirl
 

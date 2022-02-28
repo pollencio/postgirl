@@ -1,44 +1,34 @@
 import { useState } from 'react';
-import logo from '/images/icons/iconx192.png';
-import './App.css';
+import useAppContext from './state/useAppContext';
+import RequestInput from './components/organisms/RequestInput';
+import RequestArea from './components/organisms/RequestArea/Request';
+import ResponseArea from './components/organisms/ResponseArea/Response';
+import MainLayout from './components/templates/MainLayout';
+import TabAreas from './components/templates/TabAreas';
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(null);
+  const { sendRequest, setRequestElement, isLoading } = useAppContext();
+
+  const onSendRequest = ({ method, url }) => {
+    console.log('METHOD', method);
+    setRequestElement('method', method);
+    setRequestElement('url', url);
+    sendRequest();
+
+    setSelectedIndex(1); // auto-select Response tab when hitting send
+  };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Postgirl</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.jsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
+    <MainLayout>
+      <RequestInput onSendRequest={onSendRequest} isLoading={isLoading} />
+      <TabAreas
+        isPrimary={true}
+        tabs={['Details', 'Response']}
+        areas={[<RequestArea />, <ResponseArea />]}
+        selectedIndex={selectedIndex}
+      />
+    </MainLayout>
   );
 }
 

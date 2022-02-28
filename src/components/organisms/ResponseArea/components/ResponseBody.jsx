@@ -1,18 +1,25 @@
-import styled from 'styled-components';
+import JSONEditor from '../../../molecules/JSONEditor';
 import useAppContext from '../../../../state/useAppContext';
+import styled from 'styled-components';
 
 function Body() {
-  const { response, error } = useAppContext();
+  const { response } = useAppContext();
 
   return (
-    <>
-      {error ? (
-        <code>{error.message}</code>
-      ) : (
-        <code>{JSON.stringify(response.data)}</code>
-      )}
-    </>
+    <EditorContainer>
+      <JSONEditor
+        content={{ json: response.data || {} }}
+        readOnly={true}
+        mainMenuBar={false}
+        navigationBar={false}
+        mode="code"
+      />
+    </EditorContainer>
   );
 }
+
+const EditorContainer = styled.div`
+  height: 300px;
+`;
 
 export default Body;

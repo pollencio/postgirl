@@ -1,7 +1,6 @@
 import { useRef } from 'react';
 import styled from 'styled-components';
 import { Button, Input } from '@superys/momo-ui';
-import useAppContext from '../../state/useAppContext';
 
 function RequestInput({ onSendRequest, isLoading }) {
   const methodRef = useRef();
@@ -18,7 +17,11 @@ function RequestInput({ onSendRequest, isLoading }) {
   return (
     <RequestInputStyled onSubmit={handleSubmit}>
       <select ref={methodRef}>
-        <option value="get">Get</option>
+        <option value="get">GET</option>
+        <option value="post">POST</option>
+        <option value="put">PUT</option>
+        <option value="patch">PATCH</option>
+        <option value="delete">DELETE</option>
       </select>
       <Input ref={urlRef} type="url" placeholder="Enter request URL" />
       <Button color="pink" type="submit" modifiers="small" loading={isLoading}>
@@ -42,7 +45,7 @@ const RequestInputStyled = styled.form`
     font-size: 1rem;
     background-color: #ffffff;
     color: #333333;
-    padding: 9px 20px 9px 15px;
+    padding: 9px 5px 9px 10px;
     border-radius: 30px 0 0 30px;
     border: 2px solid #e0e0e0;
     box-sizing: border-box;

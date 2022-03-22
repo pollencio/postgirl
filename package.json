@@ -9,13 +9,13 @@
   "dependencies": {
     "@superys/momo-ui": "^0.0.15",
     "axios": "^0.25.0",
-    "jsoneditor-react": "^3.1.2",
     "polished": "^4.1.4",
     "pretty-bytes": "^6.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "styled-components": "^5.3.3",
-    "styled-components-modifiers": "^1.2.5"
+    "styled-components-modifiers": "^1.2.5",
+    "svelte-jsoneditor": "^0.3.18"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^1.0.7",

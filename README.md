@@ -11,7 +11,8 @@ This is a learning project to apply PWA concepts in a real app. If you want to k
 
 ## Screenshot
 
-![App Screenshot](./images/screenshots/screenshot-1.jpg)
+<!-- ![App Screenshot](./images/screenshots/screenshot-1.jpg) -->
+![image](https://user-images.githubusercontent.com/26228484/156001144-cbcf91d0-f007-4264-9efc-053ca48f27a6.png)
 
 ## Run Locally
 

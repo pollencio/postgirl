@@ -11,6 +11,7 @@ function App() {
   const { sendRequest, setRequestElement, isLoading } = useAppContext();
 
   const onSendRequest = ({ method, url }) => {
+    console.log('METHOD', method);
     setRequestElement('method', method);
     setRequestElement('url', url);
     sendRequest();

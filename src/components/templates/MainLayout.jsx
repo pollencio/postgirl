@@ -1,16 +1,13 @@
 import styled from 'styled-components';
 import { defaultTheme, neutral } from '@superys/momo-ui';
+import profileImgUrl from '../../assets/icons/iconx48.png';
 
 const MainLayout = ({ children }) => {
   return (
     <LayoutContainer>
       <header>
         <h2 className="logo">Postgirl</h2>
-        <img
-          className="profile"
-          src="/images/icons/iconx48.png"
-          alt="Foto de perfil"
-        />
+        <img className="profile" src={profileImgUrl} alt="Foto de perfil" />
       </header>
       <main>{children}</main>
     </LayoutContainer>

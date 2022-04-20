@@ -10,25 +10,28 @@ import { blue, neutral } from '@superys/momo-ui';
 function ResponseArea() {
   const { response, error, isLoading, cancelRequest } = useAppContext();
 
-  if (Object.keys(response || {}).length === 0) {
-    return (
-      <NoResponseMessage
-        error={error}
-        isLoading={isLoading}
-        cancelRequest={cancelRequest}
-      />
-    );
-  }
-
   const { status, headers, time, size } = response;
   const headersNumber = Object.keys(headers || {}).length;
 
   return (
-    <TabAreas
-      tabs={[`Body`, `Cookies`, `Headers (${headersNumber})`]}
-      metadata={<ResponseMetadata status={status} time={time} size={size} />}
-      areas={[<ResponseBody />, <ResponseCookies />, <ResponseHeaders />]}
-    />
+    <>
+      <DesktopDivider>Response</DesktopDivider>
+      {Object.keys(response || {}).length === 0 ? (
+        <NoResponseMessage
+          error={error}
+          isLoading={isLoading}
+          cancelRequest={cancelRequest}
+        />
+      ) : (
+        <TabAreas
+          tabs={[`Body`, `Cookies`, `Headers (${headersNumber})`]}
+          metadata={
+            <ResponseMetadata status={status} time={time} size={size} />
+          }
+          areas={[<ResponseBody />, <ResponseCookies />, <ResponseHeaders />]}
+        />
+      )}
+    </>
   );
 }
 
@@ -58,6 +61,16 @@ const StyledMetadata = styled.div`
   }
   .data {
     color: ${blue[300]};
+  }
+`;
+
+const DesktopDivider = styled.div`
+  border-top: 1px solid ${neutral[500]};
+  padding-top: 10px;
+  display: none;
+  margin-top: 30px;
+  @media (min-width: 1000px) {
+    display: block;
   }
 `;
 

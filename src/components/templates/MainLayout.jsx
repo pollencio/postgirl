@@ -70,6 +70,12 @@ const LayoutContainer = styled.div`
     align-items: center;
     justify-content: space-evenly;
   }
+
+  @media (min-width: 1000px) {
+    & > main {
+      max-width: 100%;
+    }
+  }
 `;
 
 export default MainLayout;

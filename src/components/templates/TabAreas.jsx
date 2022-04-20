@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { defaultTheme } from '@superys/momo-ui';
 
 function TabAreas({
@@ -51,7 +51,12 @@ function TabAreas({
 const StyledTabAreas = styled.div`
   .tabs {
     display: flex;
-    gap: 17px;
+    & > * {
+      cursor: pointer;
+      &:not(:last-child) {
+        margin-right: 17px;
+      }
+    }
     ${(props) =>
       props.isPrimary === true
         ? `
@@ -71,6 +76,20 @@ const StyledTabAreas = styled.div`
     &[data-selected='true'] {
       display: block;
     }
+  }
+
+  /* Hide primary tabs in desktop and show all its areas */
+  @media (min-width: 1000px) {
+    ${(props) =>
+      props.isPrimary === true &&
+      css`
+        .tabs {
+          display: none;
+        }
+        .areas > * {
+          display: block;
+        }
+      `}
   }
 `;
 

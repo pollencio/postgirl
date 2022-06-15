@@ -14,7 +14,7 @@ type DynamicTableProps = {
   tableKey: string;
   onTableChange: (tableObj: any) => void;
   buttonText: string;
-  noDataMessage: string;
+  noDataMessage: React.ReactNode;
 };
 
 const NEW_ROW_STATE: RowType = { key: "", value: "", isSelected: true };

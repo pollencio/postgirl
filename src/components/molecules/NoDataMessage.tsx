@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Icon } from "@superys/momo-ui";
 
-type NoDataMesageProps = { icon: string; subtitle: string; text: string };
+type NoDataMesageProps = { icon: string; subtitle?: string; text?: string };
 
 function NoDataMessage({ icon, subtitle, text }: NoDataMesageProps) {
   return (

@@ -28,7 +28,7 @@ function TabAreas(props: TabAreasProps) {
             key={`primary-tab-${index}`}
             text={tab}
             isPrimary={props.isPrimary}
-            data-selected={props.selectedIndex === index}
+            data-selected={selectedIndex === index}
             onClick={() => setSelectedIndex(index)}
           />
         ))}

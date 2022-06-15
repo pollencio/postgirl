@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { neutral } from "@superys/momo-ui";
 
-type StaticTable = {
+type StaticTableProps = {
   tableKey: string;
   data?: { [key: string]: string };
 };
 
-function StaticTable({ tableKey, data }: StaticTable) {
+function StaticTable({ tableKey, data }: StaticTableProps) {
   return (
     <div>
       <StyledTable>

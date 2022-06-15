@@ -1,7 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { Checkbox, Icon, neutral, TertiaryButton } from "@superys/momo-ui";
-import { StringLiteralTypeAnnotation } from "@babel/types";
 
 type RowType = { key: string; value: string; isSelected: boolean };
 type EventTarget = {

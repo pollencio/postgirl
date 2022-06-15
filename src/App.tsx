@@ -1,9 +1,9 @@
 import { useState } from "react";
 import useAppContext from "./state/useAppContext";
 import { RequestType } from "./state";
-import RequestInput from "./components/organisms/RequestInput";
-import RequestArea from "./components/organisms/RequestArea/Request";
-import ResponseArea from "./components/organisms/ResponseArea/Response";
+import EndpointForm from "./components/organisms/EndpointForm";
+import Request from "./modules/Request";
+import Response from "./modules/Response";
 import MainLayout from "./components/templates/MainLayout";
 import TabAreas from "./components/templates/TabAreas";
 
@@ -22,11 +22,11 @@ function App() {
 
   return (
     <MainLayout>
-      <RequestInput onSendRequest={onSendRequest} isLoading={isLoading} />
+      <EndpointForm onSendRequest={onSendRequest} isLoading={isLoading} />
       <TabAreas
         isPrimary={true}
         tabs={["Details", "Response"]}
-        areas={[<RequestArea />, <ResponseArea />]}
+        areas={[<Request />, <Response />]}
         selectedIndex={selectedIndex}
       />
     </MainLayout>

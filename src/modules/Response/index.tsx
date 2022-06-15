@@ -1,12 +1,12 @@
 import { blue, neutral } from "@superys/momo-ui";
 import styled from "styled-components";
-import useAppContext from "../../../state/useAppContext";
-import NoResponseMessage from "../../molecules/NoResponseMessage";
-import TabAreas from "../../templates/TabAreas";
+import useAppContext from "../../state/useAppContext";
+import NoResponseMessage from "../../components/molecules/NoResponseMessage";
+import TabAreas from "../../components/templates/TabAreas";
 import ResponseHeaders from "./components/ResponseHeaders";
 import ResponseCookies from "./components/ResponseCookies";
 import ResponseBody from "./components/ResponseBody";
-import { ResponseType } from "../../../state";
+import { ResponseType } from "../../state";
 
 function ResponseArea() {
   const { response, error, isLoading, cancelRequest } = useAppContext();

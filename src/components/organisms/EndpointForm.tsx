@@ -3,12 +3,12 @@ import styled from "styled-components";
 import { Button, Input } from "@superys/momo-ui";
 import { RequestType } from "../../state";
 
-type RequestInputProps = {
+type EndpointForm = {
   onSendRequest: (request: RequestType) => void;
   isLoading: boolean;
 };
 
-function RequestInput({ onSendRequest, isLoading }: RequestInputProps) {
+function UrlBox({ onSendRequest, isLoading }: EndpointForm) {
   const methodRef = useRef<HTMLSelectElement>(null);
   const urlRef = useRef<HTMLInputElement>(null);
 
@@ -21,7 +21,7 @@ function RequestInput({ onSendRequest, isLoading }: RequestInputProps) {
   };
 
   return (
-    <RequestInputStyled onSubmit={handleSubmit}>
+    <UrlBoxStyled onSubmit={handleSubmit}>
       <select ref={methodRef}>
         <option value="get">GET</option>
         <option value="post">POST</option>
@@ -33,11 +33,11 @@ function RequestInput({ onSendRequest, isLoading }: RequestInputProps) {
       <Button color="pink" type="submit" modifiers="small" loading={isLoading}>
         Send
       </Button>
-    </RequestInputStyled>
+    </UrlBoxStyled>
   );
 }
 
-const RequestInputStyled = styled.form`
+const UrlBoxStyled = styled.form`
   position: relative;
   display: flex;
   margin-bottom: 25px;
@@ -76,4 +76,4 @@ const RequestInputStyled = styled.form`
   }
 `;
 
-export default RequestInput;
+export default UrlBox;

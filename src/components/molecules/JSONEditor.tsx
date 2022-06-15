@@ -1,6 +1,6 @@
 // import { useEffect, useRef } from "react";
-import styled from "styled-components";
-import { JsonEditorProps } from "svelte-jsoneditor/components/JSONEditor.svelte";
+import styled from 'styled-components';
+import { JsonEditorProps } from 'svelte-jsoneditor/components/JSONEditor.svelte';
 // import { JSONEditor } from "svelte-jsoneditor/dist/jsoneditor.js";
 
 function SvelteJSONEditor(props: JsonEditorProps) {

@@ -1,12 +1,12 @@
-import { blue, neutral } from "@superys/momo-ui";
-import styled from "styled-components";
-import useAppContext from "../../state/useAppContext";
-import NoResponseMessage from "../../components/molecules/NoResponseMessage";
-import TabAreas from "../../components/templates/TabAreas";
-import ResponseHeaders from "./components/ResponseHeaders";
-import ResponseCookies from "./components/ResponseCookies";
-import ResponseBody from "./components/ResponseBody";
-import { ResponseType } from "../../types";
+import { blue, neutral } from '@superys/momo-ui';
+import styled from 'styled-components';
+import useAppContext from '../../state/useAppContext';
+import NoResponseMessage from '../../components/molecules/NoResponseMessage';
+import TabAreas from '../../components/templates/TabAreas';
+import ResponseHeaders from './components/ResponseHeaders';
+import ResponseCookies from './components/ResponseCookies';
+import ResponseBody from './components/ResponseBody';
+import { ResponseType } from '../../types';
 
 function ResponseArea() {
   const { response, error, isLoading, cancelRequest } = useAppContext();
@@ -37,13 +37,13 @@ function ResponseMetadata({ status, time, size }: ResponseType) {
   return (
     <StyledMetadata>
       <div>
-        Status: <span className="data">{status || "-"}</span>
+        Status: <span className="data">{status || '-'}</span>
       </div>
       <div>
-        Time: <span className="data">{time ? `${time} ms` : "-"}</span>
+        Time: <span className="data">{time ? `${time} ms` : '-'}</span>
       </div>
       <div>
-        Size: <span className="data">{size || "-"}</span>
+        Size: <span className="data">{size || '-'}</span>
       </div>
     </StyledMetadata>
   );

@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Icon } from "@superys/momo-ui";
+import styled from 'styled-components';
+import { Icon } from '@superys/momo-ui';
 
 type NoDataMesageProps = { icon: string; subtitle?: string; text?: string };
 

@@ -1,7 +1,7 @@
-import { useState } from "react";
-import styled from "styled-components";
-import { Checkbox, Icon, neutral, TertiaryButton } from "@superys/momo-ui";
-import FlexContainer from "../atoms/FlexContainer";
+import { useState } from 'react';
+import styled from 'styled-components';
+import { Checkbox, Icon, neutral, TertiaryButton } from '@superys/momo-ui';
+import FlexContainer from '../atoms/FlexContainer';
 
 type RowType = { key: string; value: string; isSelected: boolean };
 type EventTarget = {
@@ -17,7 +17,7 @@ type DynamicTableProps = {
   noDataMessage?: React.ReactNode;
 };
 
-const NEW_ROW_STATE: RowType = { key: "", value: "", isSelected: true };
+const NEW_ROW_STATE: RowType = { key: '', value: '', isSelected: true };
 
 function DynamicTable(props: DynamicTableProps) {
   const [rows, setRows] = useState<RowType[]>([]);
@@ -29,13 +29,13 @@ function DynamicTable(props: DynamicTableProps) {
 
   const handleInputChange = (
     event: { target: EventTarget },
-    rowIndex: number
+    rowIndex: number,
   ) => {
     const { name, value, checked, type } = event.target;
     let newRows: RowType[] = [...rows];
     newRows[rowIndex] = {
       ...newRows[rowIndex],
-      [name as string]: type === "checkbox" ? checked : value,
+      [name as string]: type === 'checkbox' ? checked : value,
     };
     setNewState(newRows);
   };

@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { Icon, red, TertiaryButton } from "@superys/momo-ui";
-import { ErrorType } from "../../types";
+import styled from 'styled-components';
+import { Icon, red, TertiaryButton } from '@superys/momo-ui';
+import { ErrorType } from '../../types';
 
 type NoResponseProps = {
   error: ErrorType;
@@ -9,12 +9,12 @@ type NoResponseProps = {
 };
 
 function NoResponseMessage(props: NoResponseProps) {
-  const icon = props.error ? "warning-circle" : "butterfly";
+  const icon = props.error ? 'warning-circle' : 'butterfly';
   const text = props.error
     ? props.error.message
     : props.isLoading
-    ? "Sending request ..."
-    : "Enter a URL and click send to get a response";
+    ? 'Sending request ...'
+    : 'Enter a URL and click send to get a response';
 
   return (
     <NoResponseStyled error={props.error !== null} isLoading={props.isLoading}>
@@ -35,8 +35,8 @@ const NoResponseStyled = styled.div<{ error: boolean; isLoading: boolean }>`
   max-width: 270px;
   margin: 30% auto;
 
-  ${({ error }) => (error ? `color: ${red[200]};` : "")}
-  ${({ isLoading, error }) => (!isLoading && !error ? "opacity: 50%;" : "")}
+  ${({ error }) => (error ? `color: ${red[200]};` : '')}
+  ${({ isLoading, error }) => (!isLoading && !error ? 'opacity: 50%;' : '')}
 `;
 
 export default NoResponseMessage;

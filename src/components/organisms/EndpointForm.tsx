@@ -1,7 +1,7 @@
-import { useRef } from "react";
-import styled from "styled-components";
-import { Button, Input } from "@superys/momo-ui";
-import { RequestType } from "../../types";
+import { useRef } from 'react';
+import styled from 'styled-components';
+import { Button, Input } from '@superys/momo-ui';
+import { RequestType } from '../../types';
 
 type EndpointFormProps = {
   onSendRequest: (request: RequestType) => void;

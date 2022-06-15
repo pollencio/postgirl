@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { neutral } from "@superys/momo-ui";
+import styled from 'styled-components';
+import { neutral } from '@superys/momo-ui';
 
 type StaticTableProps = {
   tableKey: string;

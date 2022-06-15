@@ -1,6 +1,6 @@
-import { ReactNode, useEffect, useState } from "react";
-import styled from "styled-components";
-import { defaultTheme } from "@superys/momo-ui";
+import { ReactNode, useEffect, useState } from 'react';
+import styled from 'styled-components';
+import { defaultTheme } from '@superys/momo-ui';
 
 type TabAreasProps = {
   tabs: string[];
@@ -70,7 +70,7 @@ const StyledTabAreas = styled.div<{ isPrimary?: boolean }>`
   }
   .areas > * {
     display: none;
-    &[data-selected="true"] {
+    &[data-selected='true'] {
       display: block;
     }
   }
@@ -78,7 +78,7 @@ const StyledTabAreas = styled.div<{ isPrimary?: boolean }>`
 
 type TabProps = {
   text: string;
-  "data-selected": boolean;
+  'data-selected': boolean;
   onClick: () => void;
   isPrimary?: boolean;
 };
@@ -101,7 +101,7 @@ const StyledPrimaryTab = styled.h5<TabProps>`
   width: 100px;
   opacity: 80%;
   margin: 0;
-  &[data-selected="true"] {
+  &[data-selected='true'] {
     border-bottom: 2px solid ${defaultTheme.textColor};
     opacity: 100%;
   }
@@ -112,7 +112,7 @@ const StyledSecondaryTab = styled.p<TabProps>`
   opacity: 65%;
   margin: 0;
   font-weight: bold;
-  &[data-selected="true"] {
+  &[data-selected='true'] {
     color: ${defaultTheme.primaryColor};
     border-bottom: 2px solid ${defaultTheme.primaryColor};
     opacity: 100%;

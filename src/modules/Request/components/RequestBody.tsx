@@ -1,5 +1,5 @@
-import JSONEditor from "../../../components/molecules/JSONEditor";
-import useAppContext from "../../../state/useAppContext";
+import JSONEditor from '../../../components/molecules/JSONEditor';
+import useAppContext from '../../../state/useAppContext';
 
 function Body() {
   const { request, setRequestElement } = useAppContext();
@@ -10,7 +10,7 @@ function Body() {
       mainMenuBar={false}
       navigationBar={false}
       mode="code"
-      onChange={(newData) => setRequestElement("data", newData)}
+      onChange={(newData) => setRequestElement('data', newData)}
     />
   );
 }

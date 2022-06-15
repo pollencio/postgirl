@@ -1,6 +1,6 @@
-import JSONEditor from "../../../components/molecules/JSONEditor";
-import useAppContext from "../../../state/useAppContext";
-import styled from "styled-components";
+import JSONEditor from '../../../components/molecules/JSONEditor';
+import useAppContext from '../../../state/useAppContext';
+import styled from 'styled-components';
 
 function Body() {
   const { response } = useAppContext();

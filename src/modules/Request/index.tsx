@@ -1,8 +1,8 @@
-import RequestParams from "./components/RequestParams";
-import RequestHeaders from "./components/RequestHeaders";
-import RequestBody from "./components/RequestBody";
-import TabAreas from "../../components/templates/TabAreas";
-import useAppContext from "../../state/useAppContext";
+import RequestParams from './components/RequestParams';
+import RequestHeaders from './components/RequestHeaders';
+import RequestBody from './components/RequestBody';
+import TabAreas from '../../components/templates/TabAreas';
+import useAppContext from '../../state/useAppContext';
 
 function RequestArea() {
   const {
@@ -13,7 +13,7 @@ function RequestArea() {
 
   return (
     <TabAreas
-      tabs={[`Params (${paramsNumber})`, `Headers (${headersNumber})`, "Body"]}
+      tabs={[`Params (${paramsNumber})`, `Headers (${headersNumber})`, 'Body']}
       areas={[<RequestParams />, <RequestHeaders />, <RequestBody />]}
     />
   );

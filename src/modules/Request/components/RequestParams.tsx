@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import useAppContext from "../../../state/useAppContext";
-import DynamicTable from "../../../components/templates/DynamicTable";
+import styled from 'styled-components';
+import useAppContext from '../../../state/useAppContext';
+import DynamicTable from '../../../components/templates/DynamicTable';
 
 function ParamsTable() {
   const { setRequestElement } = useAppContext();
@@ -12,7 +12,7 @@ function ParamsTable() {
       <DynamicTable
         tableKey="request-params"
         buttonText="Add a param"
-        onTableChange={(params) => setRequestElement("params", params)}
+        onTableChange={(params) => setRequestElement('params', params)}
       />
     </StyledParams>
   );

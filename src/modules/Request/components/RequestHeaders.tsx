@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import useAppContext from "../../../state/useAppContext";
-import DynamicTable from "../../../components/templates/DynamicTable";
+import styled from 'styled-components';
+import useAppContext from '../../../state/useAppContext';
+import DynamicTable from '../../../components/templates/DynamicTable';
 
 function HeadersTable() {
   const { setRequestElement } = useAppContext();
@@ -12,7 +12,7 @@ function HeadersTable() {
       <DynamicTable
         tableKey="request-headers"
         buttonText="Add a header"
-        onTableChange={(headers) => setRequestElement("headers", headers)}
+        onTableChange={(headers) => setRequestElement('headers', headers)}
       />
     </StyledParams>
   );

@@ -1,6 +1,6 @@
-import useAppContext from "../../../state/useAppContext";
-import StaticTable from "../../../components/templates/StaticTable";
-import NoDataMessage from "../../../components/molecules/NoDataMessage";
+import useAppContext from '../../../state/useAppContext';
+import StaticTable from '../../../components/templates/StaticTable';
+import NoDataMessage from '../../../components/molecules/NoDataMessage';
 
 function ResponseCookies() {
   const {

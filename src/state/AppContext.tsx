@@ -1,5 +1,5 @@
 import React, { useState, createContext } from "react";
-import { StateType } from "./sharedTypes";
+import { StateType } from "../state";
 
 type ContextType = {
   state: StateType;

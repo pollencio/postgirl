@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { defaultTheme, neutral } from "@superys/momo-ui";
-import profileImgUrl from "../../assets/icons/iconx48.png";
+const profileImgUrl = "/logo192.png";
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (

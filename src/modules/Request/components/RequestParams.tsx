@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import useAppContext from "../../../state/useAppContext";
-import NoDataMessage from "../../../components/molecules/NoDataMessage";
 import DynamicTable from "../../../components/templates/DynamicTable";
 
 function ParamsTable() {
@@ -14,7 +13,6 @@ function ParamsTable() {
         tableKey="request-params"
         buttonText="Add a param"
         onTableChange={(params) => setRequestElement("params", params)}
-        noDataMessage={<NoDataMessage icon="circle-wavy-question" />}
       />
     </StyledParams>
   );

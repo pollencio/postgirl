@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import useAppContext from "../../../state/useAppContext";
-import NoDataMessage from "../../../components/molecules/NoDataMessage";
 import DynamicTable from "../../../components/templates/DynamicTable";
 
 function HeadersTable() {
@@ -14,7 +13,6 @@ function HeadersTable() {
         tableKey="request-headers"
         buttonText="Add a header"
         onTableChange={(headers) => setRequestElement("headers", headers)}
-        noDataMessage={<NoDataMessage icon="align-top-simple" />}
       />
     </StyledParams>
   );

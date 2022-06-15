@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { Checkbox, Icon, neutral, TertiaryButton } from "@superys/momo-ui";
+import FlexContainer from "../atoms/FlexContainer";
 
 type RowType = { key: string; value: string; isSelected: boolean };
 type EventTarget = {
@@ -13,7 +14,7 @@ type DynamicTableProps = {
   tableKey: string;
   onTableChange: (tableObj: any) => void;
   buttonText: string;
-  noDataMessage: React.ReactNode;
+  noDataMessage?: React.ReactNode;
 };
 
 const NEW_ROW_STATE: RowType = { key: "", value: "", isSelected: true };
@@ -54,7 +55,7 @@ function DynamicTable(props: DynamicTableProps) {
 
   return (
     <>
-      {rows.length === 0 ? (
+      {rows.length === 0 && props.noDataMessage ? (
         props.noDataMessage
       ) : (
         <StyledTable>
@@ -101,9 +102,11 @@ function DynamicTable(props: DynamicTableProps) {
         </StyledTable>
       )}
 
-      <TertiaryButton modifiers="small" onClick={addRow}>
-        {props.buttonText}
-      </TertiaryButton>
+      <FlexContainer justifyContent="center">
+        <TertiaryButton modifiers="small" onClick={addRow}>
+          {props.buttonText}
+        </TertiaryButton>
+      </FlexContainer>
     </>
   );
 }

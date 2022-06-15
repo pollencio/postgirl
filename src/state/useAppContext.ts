@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import axios from "axios";
 import prettyBytes from "pretty-bytes";
-import { AppContext, State, Request, Response } from "./AppContext";
+import { AppContext } from "./AppContext";
+import { StateType, RequestType, ResponseType } from "./sharedTypes";
 
 function useAppContext() {
   const { state, setState } = useContext(AppContext);
@@ -9,7 +10,7 @@ function useAppContext() {
   console.log("live changes to state!", state);
 
   const setStateElement = (key: string, value: any) => {
-    setState((prevState: State) => ({ ...prevState, [key]: value }));
+    setState((prevState: StateType) => ({ ...prevState, [key]: value }));
   };
 
   const setRequestElement = (key: string, value: any) => {
@@ -65,7 +66,7 @@ export default useAppContext;
   HANDLE RESPONSE TIMES WITH AXIOS INTERCEPTORS
 */
 
-axios.interceptors.request.use((request: Request) => {
+axios.interceptors.request.use((request: RequestType) => {
   request.customData = request.customData || {};
   request.customData.startTime = new Date().getTime(); // set the startTime
   return request;
@@ -76,7 +77,7 @@ axios.interceptors.response.use(updateEndTime, (error) => {
   return Promise.reject(updateEndTime(error.response)); // set the endTime
 });
 
-function updateEndTime(response: Response) {
+function updateEndTime(response: ResponseType) {
   response.customData = response.customData || {};
   response.customData.time =
     new Date().getTime() - response.config.customData.startTime;

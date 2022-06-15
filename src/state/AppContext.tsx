@@ -1,43 +1,25 @@
 import React, { useState, createContext } from "react";
+import { StateType } from "./sharedTypes";
 
-export type Request = {
-  customData?: any;
-  method?: string;
-  url?: string;
-};
-export type Response = {
-  customData?: any;
-  config?: any;
-  data?: any;
-  headers?: any;
-};
-
-export type State = {
-  request: Request;
-  response: Response;
-  error: string | null;
-  isLoading: boolean;
-};
-
-type Context = {
-  state: State;
+type ContextType = {
+  state: StateType;
   setState: (cb: any) => void;
 };
 
-const INITIAL_APP_STATE: State = {
+const INITIAL_APP_STATE: StateType = {
   request: {},
   response: {},
   error: null,
   isLoading: false,
 };
 
-const AppContext = createContext<Context>({
+const AppContext = createContext<ContextType>({
   state: { ...INITIAL_APP_STATE },
   setState: () => {},
 });
 
 const AppProvider = ({ children }: { children: React.ReactNode }) => {
-  const [state, setState] = useState<State>({ ...INITIAL_APP_STATE });
+  const [state, setState] = useState<StateType>({ ...INITIAL_APP_STATE });
 
   return (
     <AppContext.Provider value={{ state, setState }}>

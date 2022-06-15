@@ -3,10 +3,10 @@ import styled from "styled-components";
 import { defaultTheme } from "@superys/momo-ui";
 
 type TabAreasProps = {
-  isPrimary: boolean;
   tabs: string[];
   areas: ReactNode[];
-  selectedIndex: number | null;
+  isPrimary?: boolean;
+  selectedIndex?: number;
   metadata?: ReactNode;
 };
 
@@ -50,7 +50,7 @@ function TabAreas(props: TabAreasProps) {
   );
 }
 
-const StyledTabAreas = styled.div<{ isPrimary: boolean }>`
+const StyledTabAreas = styled.div<{ isPrimary?: boolean }>`
   .tabs {
     display: flex;
     gap: 17px;
@@ -77,10 +77,10 @@ const StyledTabAreas = styled.div<{ isPrimary: boolean }>`
 `;
 
 type TabProps = {
-  isPrimary: boolean;
   text: string;
   "data-selected": boolean;
   onClick: () => void;
+  isPrimary?: boolean;
 };
 
 function Tab(props: TabProps) {

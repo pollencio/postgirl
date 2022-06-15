@@ -6,7 +6,7 @@ import TabAreas from "../../components/templates/TabAreas";
 import ResponseHeaders from "./components/ResponseHeaders";
 import ResponseCookies from "./components/ResponseCookies";
 import ResponseBody from "./components/ResponseBody";
-import { ResponseType } from "../../state";
+import { ResponseType } from "../../types";
 
 function ResponseArea() {
   const { response, error, isLoading, cancelRequest } = useAppContext();

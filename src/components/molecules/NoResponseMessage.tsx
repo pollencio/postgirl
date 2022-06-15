@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Icon, red, TertiaryButton } from "@superys/momo-ui";
-import { ErrorType } from "../../state";
+import { ErrorType } from "../../types";
 
 type NoResponseProps = {
   error: ErrorType;

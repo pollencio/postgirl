@@ -1,14 +1,14 @@
 import { useRef } from "react";
 import styled from "styled-components";
 import { Button, Input } from "@superys/momo-ui";
-import { RequestType } from "../../state";
+import { RequestType } from "../../types";
 
-type EndpointForm = {
+type EndpointFormProps = {
   onSendRequest: (request: RequestType) => void;
   isLoading: boolean;
 };
 
-function UrlBox({ onSendRequest, isLoading }: EndpointForm) {
+function EndpointForm({ onSendRequest, isLoading }: EndpointFormProps) {
   const methodRef = useRef<HTMLSelectElement>(null);
   const urlRef = useRef<HTMLInputElement>(null);
 
@@ -21,7 +21,7 @@ function UrlBox({ onSendRequest, isLoading }: EndpointForm) {
   };
 
   return (
-    <UrlBoxStyled onSubmit={handleSubmit}>
+    <EndpointFormStyled onSubmit={handleSubmit}>
       <select ref={methodRef}>
         <option value="get">GET</option>
         <option value="post">POST</option>
@@ -30,14 +30,14 @@ function UrlBox({ onSendRequest, isLoading }: EndpointForm) {
         <option value="delete">DELETE</option>
       </select>
       <Input ref={urlRef} type="url" placeholder="Enter request URL" />
-      <Button color="pink" type="submit" modifiers="small" loading={isLoading}>
+      <Button type="submit" modifiers="small" loading={isLoading}>
         Send
       </Button>
-    </UrlBoxStyled>
+    </EndpointFormStyled>
   );
 }
 
-const UrlBoxStyled = styled.form`
+const EndpointFormStyled = styled.form`
   position: relative;
   display: flex;
   margin-bottom: 25px;
@@ -76,4 +76,4 @@ const UrlBoxStyled = styled.form`
   }
 `;
 
-export default UrlBox;
+export default EndpointForm;

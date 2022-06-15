@@ -1,6 +1,6 @@
 import { useState } from "react";
 import useAppContext from "./state/useAppContext";
-import { RequestType } from "./state";
+import { RequestType } from "./types";
 import EndpointForm from "./components/organisms/EndpointForm";
 import Request from "./modules/Request";
 import Response from "./modules/Response";

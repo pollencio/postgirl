@@ -2,7 +2,7 @@ import { useContext } from "react";
 import axios from "axios";
 import prettyBytes from "pretty-bytes";
 import { AppContext } from "./AppContext";
-import { StateType, RequestType, ResponseType } from "../state";
+import { StateType, RequestType, ResponseType } from "../types";
 
 function useAppContext() {
   const { state, setState } = useContext(AppContext);

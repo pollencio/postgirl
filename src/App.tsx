@@ -1,12 +1,35 @@
+import { useState } from "react";
+import useAppContext from "./state/useAppContext";
+import { RequestType } from "./state";
+import RequestInput from "./components/organisms/RequestInput";
+import RequestArea from "./components/organisms/RequestArea/Request";
+import ResponseArea from "./components/organisms/ResponseArea/Response";
+import MainLayout from "./components/templates/MainLayout";
+import TabAreas from "./components/templates/TabAreas";
+
 function App() {
+  const [selectedIndex, setSelectedIndex] = useState<number>();
+  const { sendRequest, setRequestElement, isLoading } = useAppContext();
+
+  const onSendRequest = ({ method, url }: RequestType) => {
+    console.log("METHOD", method);
+    setRequestElement("method", method);
+    setRequestElement("url", url);
+    sendRequest();
+
+    setSelectedIndex(1); // auto-select Response tab when hitting send
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-      </header>
-    </div>
+    <MainLayout>
+      <RequestInput onSendRequest={onSendRequest} isLoading={isLoading} />
+      <TabAreas
+        isPrimary={true}
+        tabs={["Details", "Response"]}
+        areas={[<RequestArea />, <ResponseArea />]}
+        selectedIndex={selectedIndex}
+      />
+    </MainLayout>
   );
 }
 

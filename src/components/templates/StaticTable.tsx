@@ -3,7 +3,7 @@ import { neutral } from "@superys/momo-ui";
 
 type StaticTable = {
   tableKey: string;
-  data: { [key: string]: string };
+  data?: { [key: string]: string };
 };
 
 function StaticTable({ tableKey, data }: StaticTable) {

@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import useAppContext from '../../../state/useAppContext';
 import DynamicTable from '../../../components/templates/DynamicTable';
 
@@ -6,22 +5,13 @@ function HeadersTable() {
   const { setRequestElement } = useAppContext();
 
   return (
-    <StyledParams>
-      <p className="heading">Headers</p>
-
-      <DynamicTable
-        tableKey="request-headers"
-        buttonText="Add a header"
-        onTableChange={(headers) => setRequestElement('headers', headers)}
-      />
-    </StyledParams>
+    <DynamicTable
+      heading="Headers"
+      tableKey="request-headers"
+      buttonText="Add a header"
+      onTableChange={(headers) => setRequestElement('headers', headers)}
+    />
   );
 }
-
-const StyledParams = styled.div`
-  .heading {
-    font-weight: bold;
-  }
-`;
 
 export default HeadersTable;

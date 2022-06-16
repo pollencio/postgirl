@@ -1,4 +1,3 @@
-import { blue, neutral } from '@superys/momo-ui';
 import styled from 'styled-components';
 import useAppContext from '../../state/useAppContext';
 import NoResponseMessage from '../../components/molecules/NoResponseMessage';
@@ -54,11 +53,11 @@ const StyledMetadata = styled.div`
   gap: 13px;
   font-weight: bold;
   & > *:not(:last-child) {
-    border-right: 1px solid ${neutral[400]};
+    border-right: 1px solid ${(props) => props.theme.palette.neutral[400]};
     padding-right: 13px;
   }
   .data {
-    color: ${blue[300]};
+    color: ${(props) => props.theme.palette.green[200]};
   }
 `;
 

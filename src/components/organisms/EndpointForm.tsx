@@ -23,11 +23,11 @@ function EndpointForm({ onSendRequest, isLoading }: EndpointFormProps) {
   return (
     <EndpointFormStyled onSubmit={handleSubmit}>
       <select ref={methodRef}>
-        <option value="get">GET</option>
-        <option value="post">POST</option>
-        <option value="put">PUT</option>
-        <option value="patch">PATCH</option>
-        <option value="delete">DELETE</option>
+        <option value="get">Get</option>
+        <option value="post">Post</option>
+        <option value="put">Put</option>
+        <option value="patch">Patch</option>
+        <option value="delete">Delete</option>
       </select>
       <Input ref={urlRef} type="url" placeholder="Enter request URL" />
       <Button type="submit" modifiers="small" loading={isLoading}>
@@ -47,22 +47,26 @@ const EndpointFormStyled = styled.form`
     top: 6px;
   }
   select {
-    font-family: NunitoSans, Verdana;
-    font-size: 1rem;
-    background-color: #ffffff;
-    color: #333333;
+    font-family: ${(props) => props.theme.fonts.body};
+    font-size: ${(props) => props.theme.typeScale.mobile.paragraph};
+    background-color: ${(props) => props.theme.input.backgroundColor.main};
+    color: ${(props) => props.theme.textColor.main};
+    /* font-weight: bold; */
+    margin-right: 2px;
+
     padding: 9px 5px 9px 10px;
     border-radius: 30px 0 0 30px;
-    border: 2px solid #e0e0e0;
+    border: 2px solid ${(props) => props.theme.input.borderColor.main};
     box-sizing: border-box;
-    -webkit-transition: background-color 0.2s linear, color 0.2s linear,
-      box-shadow 0.2s linear;
     transition: background-color 0.2s linear, color 0.2s linear,
       box-shadow 0.2s linear;
+    ::placeholder {
+      color: ${(props) => props.theme.input.placeholderColor};
+    }
     &:focus {
       outline: none;
-      box-shadow: 2px 2px 15px rgb(68 140 255 / 30%);
-      border-color: #8dd6ff;
+      box-shadow: 2px 2px 15px ${(props) => props.theme.input.focusShadowColor};
+      border-color: ${(props) => props.theme.input.borderColor.focus};
     }
   }
   label {

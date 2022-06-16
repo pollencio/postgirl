@@ -6,15 +6,14 @@ import useAppContext from '../../state/useAppContext';
 
 function RequestArea() {
   const {
-    request: { params, headers },
+    request: { headers },
   } = useAppContext();
-  const paramsNumber = Object.keys(params || {}).length;
   const headersNumber = Object.keys(headers || {}).length;
 
   return (
     <TabAreas
-      tabs={[`Params (${paramsNumber})`, `Headers (${headersNumber})`, 'Body']}
-      areas={[<RequestParams />, <RequestHeaders />, <RequestBody />]}
+      tabs={[`Params`, 'Body', `Headers (${headersNumber})`]}
+      areas={[<RequestParams />, <RequestBody />, <RequestHeaders />]}
     />
   );
 }

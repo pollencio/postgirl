@@ -1,4 +1,3 @@
-import { neutral } from '@superys/momo-ui';
 import styled from 'styled-components';
 const profileImgUrl = '/logo192.png';
 
@@ -19,7 +18,6 @@ const LayoutContainer = styled.div`
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  color: ${neutral[700]};
 
   & > header {
     width: 100%;
@@ -28,7 +26,7 @@ const LayoutContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #fafafade;
+    background: ${(props) => props.theme.backgroundColor}de;
     z-index: 2;
     .logo {
       margin: 0;
@@ -37,7 +35,6 @@ const LayoutContainer = styled.div`
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      background: #9c9c9c;
     }
   }
 

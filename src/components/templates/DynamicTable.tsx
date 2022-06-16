@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import { Checkbox, Icon, neutral, TertiaryButton } from '@superys/momo-ui';
+import { Checkbox, Icon, TertiaryButton } from '@superys/momo-ui';
 import FlexContainer from '../atoms/FlexContainer';
 
 type RowType = { key: string; value: string; isSelected: boolean };
@@ -11,13 +11,14 @@ type EventTarget = {
   checked?: boolean;
 };
 type DynamicTableProps = {
+  heading?: string;
   tableKey: string;
   onTableChange: (tableObj: any) => void;
   buttonText: string;
   noDataMessage?: React.ReactNode;
 };
 
-const NEW_ROW_STATE: RowType = { key: '', value: '', isSelected: true };
+const NEW_ROW_STATE: RowType = { key: '', value: '', isSelected: false };
 
 function DynamicTable(props: DynamicTableProps) {
   const [rows, setRows] = useState<RowType[]>([]);
@@ -55,6 +56,8 @@ function DynamicTable(props: DynamicTableProps) {
 
   return (
     <>
+      <TableHeading>{props.heading}</TableHeading>
+
       {rows.length === 0 && props.noDataMessage ? (
         props.noDataMessage
       ) : (
@@ -124,27 +127,35 @@ const getStateObject = (stateArray: RowType[]) => {
   }, {});
 };
 
+const TableHeading = styled.p`
+  color: ${(props) => props.theme.palette.neutral[500]};
+  font-weight: bold;
+`;
+
 const StyledTable = styled.table`
   border-collapse: collapse;
   margin-bottom: 30px;
   width: 100%;
 
+  th {
+    color: ${(props) => props.theme.palette.neutral[500]};
+  }
   tr {
-    height: 40px;
+    height: 40px !important;
   }
 
   th:first-child,
   td:first-child {
-    padding: 7px;
+    padding: 8px 9px 8px 8px;
   }
   th:last-child,
   td:last-child {
     border: none;
-    min-width: 20px;
+    min-width: 22px;
   }
   th,
   td {
-    border: 1px solid ${neutral[500]};
+    border: 1px solid ${(props) => props.theme.palette.neutral[700]};
     padding: 10px;
     text-align: left;
   }
@@ -152,7 +163,8 @@ const StyledTable = styled.table`
     background: none;
     border: none;
     width: 100%;
-    min-width: 20px;
+    min-width: 22px;
+    margin: 0;
   }
 `;
 

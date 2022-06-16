@@ -1813,10 +1813,10 @@
     "@styled-system/core" "^5.1.2"
     "@styled-system/css" "^5.1.5"
 
-"@superys/momo-ui@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@superys/momo-ui/-/momo-ui-1.0.1.tgz#5aca83fbcfa701858e4750096fc60a8f88a46e46"
-  integrity sha512-blYeYR/oeTPsPOxMI223LyWZ+LU9ja6N5Mpz6Hay4zLfFNEnWG94+pO6L1LOXeDVcj2Fq3J9Hni0Y7GNPxC0Gw==
+"@superys/momo-ui@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@superys/momo-ui/-/momo-ui-1.0.4.tgz#8ad5ee12bb3e7701296eb130b843564ec92cd120"
+  integrity sha512-iwRCm02fI70lUnTqp9LoBrZCiRRwR38vLwJeSGfxTBS27/fGBq75S8jfqQ5AZb53gM4Cby1FIQmny76Abo2GKg==
   dependencies:
     polished "^4.1.4"
     styled-components "^5.3.5"

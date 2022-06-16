@@ -1,14 +1,16 @@
 import styled from 'styled-components';
-import { neutral } from '@superys/momo-ui';
 
 type StaticTableProps = {
+  heading?: string;
   tableKey: string;
   data?: { [key: string]: string };
 };
 
-function StaticTable({ tableKey, data }: StaticTableProps) {
+function StaticTable({ heading, tableKey, data }: StaticTableProps) {
   return (
     <div>
+      {heading && <TableHeading>{heading}</TableHeading>}
+
       <StyledTable>
         <thead>
           <tr>
@@ -30,11 +32,19 @@ function StaticTable({ tableKey, data }: StaticTableProps) {
   );
 }
 
+const TableHeading = styled.p`
+  color: ${(props) => props.theme.palette.neutral[500]};
+  font-weight: bold;
+`;
+
 const StyledTable = styled.table`
   border-collapse: collapse;
   margin-bottom: 30px;
   width: 100%;
 
+  th {
+    color: ${(props) => props.theme.palette.neutral[500]};
+  }
   tr {
     height: 40px;
   }
@@ -45,7 +55,7 @@ const StyledTable = styled.table`
   }
   th,
   td {
-    border: 1px solid ${neutral[500]};
+    border: 1px solid ${(props) => props.theme.palette.neutral[700]};
     padding: 10px;
     text-align: left;
   }

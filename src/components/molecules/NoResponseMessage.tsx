@@ -23,20 +23,23 @@ function NoResponseMessage(props: NoResponseProps) {
       {props.isLoading ? (
         <TertiaryButton onClick={props.cancelRequest}>Cancel</TertiaryButton>
       ) : (
-        <Icon icon={icon} size={110} />
+        <Icon icon={icon} size={110} weight="light" />
       )}
     </NoResponseStyled>
   );
 }
 
 const NoResponseStyled = styled.div<{ error: boolean; isLoading: boolean }>`
+  color: ${(props) => props.theme.palette.neutral[600]};
   text-align: center;
   width: 90%;
   max-width: 270px;
   margin: 30% auto;
 
-  ${({ error }) => (error ? `color: ${red[200]};` : '')}
-  ${({ isLoading, error }) => (!isLoading && !error ? 'opacity: 50%;' : '')}
+  ${({ error }) => (error ? `color: ${red[200]};` : '')}/* ${({
+    isLoading,
+    error,
+  }) => (!isLoading && !error ? 'opacity: 50%;' : '')} */
 `;
 
 export default NoResponseMessage;

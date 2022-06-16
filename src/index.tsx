@@ -1,16 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import { MomoStyleWrapper } from '@superys/momo-ui';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-import { GlobalStyle } from '@superys/momo-ui';
 import { AppProvider } from './state/AppContext';
+import App from './App';
+import customTheme from './styles/customTheme';
 
 ReactDOM.render(
   <React.StrictMode>
-    <GlobalStyle />
-    <AppProvider>
-      <App />
-    </AppProvider>
+    <MomoStyleWrapper theme={customTheme}>
+      <AppProvider>
+        <App />
+      </AppProvider>
+    </MomoStyleWrapper>
   </React.StrictMode>,
   document.getElementById('root'),
 );

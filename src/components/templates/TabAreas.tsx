@@ -1,6 +1,5 @@
 import { ReactNode, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { defaultTheme } from '@superys/momo-ui';
 
 type TabAreasProps = {
   tabs: string[];
@@ -102,7 +101,7 @@ const StyledPrimaryTab = styled.h5<TabProps>`
   opacity: 80%;
   margin: 0;
   &[data-selected='true'] {
-    border-bottom: 2px solid ${defaultTheme.textColor};
+    border-bottom: 2px solid ${(props) => props.theme.textColor.main};
     opacity: 100%;
   }
 `;
@@ -113,8 +112,8 @@ const StyledSecondaryTab = styled.p<TabProps>`
   margin: 0;
   font-weight: bold;
   &[data-selected='true'] {
-    color: ${defaultTheme.primaryColor};
-    border-bottom: 2px solid ${defaultTheme.primaryColor};
+    color: ${(props) => props.theme.primary.main};
+    border-bottom: 2px solid ${(props) => props.theme.primary.main};
     opacity: 100%;
   }
 `;

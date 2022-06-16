@@ -1,5 +1,5 @@
+import { neutral } from '@superys/momo-ui';
 import styled from 'styled-components';
-import { defaultTheme, neutral } from '@superys/momo-ui';
 const profileImgUrl = '/logo192.png';
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
@@ -60,7 +60,7 @@ const LayoutContainer = styled.div`
     width: 100%;
     background: linear-gradient(
       360deg,
-      ${defaultTheme.backgroundColor} 69.08%,
+      ${(props) => props.theme.backgroundColor} 69.08%,
       rgba(250, 250, 250, 0) 88.67%
     );
     display: flex;

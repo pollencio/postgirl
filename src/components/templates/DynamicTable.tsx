@@ -15,12 +15,11 @@ type TableProps = {
   onTableChange: (tableObj: any) => void;
   buttonText: string;
   noDataMessage?: React.ReactNode;
-  isDynamic?: boolean;
 };
 
 const NEW_ROW_STATE: RowType = { key: '', value: '', isSelected: true };
 
-function Table({ isDynamic = false, ...props }: TableProps) {
+function DynamicTable(props: TableProps) {
   const [rows, setRows] = useState<RowType[]>([{ ...NEW_ROW_STATE }]);
 
   useEffect(() => {
@@ -32,7 +31,7 @@ function Table({ isDynamic = false, ...props }: TableProps) {
 
   const setNewState = (newRows: RowType[]) => {
     setRows(newRows);
-    props.onTableChange(getStateObject(newRows));
+    props.onTableChange(getStateObject(newRows)); // TODO: last item is always an empty row
   };
 
   const handleInputChange = (
@@ -184,4 +183,4 @@ const StyledTable = styled.table`
   }
 `;
 
-export default Table;
+export default DynamicTable;

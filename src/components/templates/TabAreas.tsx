@@ -84,6 +84,7 @@ const StyledTabAreas = styled.div<{ isPrimary?: boolean }>`
     ${(props) =>
       props.isPrimary === true &&
       css`
+        padding: 0 40px;
         .tabs {
           display: none;
         }

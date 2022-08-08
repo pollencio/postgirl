@@ -158,12 +158,12 @@ const StyledTable = styled.table`
   th:first-child,
   td:first-child {
     padding: 8px;
-    min-width: 40px;
+    width: 40px;
   }
   th:last-child,
   td:last-child {
     border: none;
-    min-width: 27px;
+    width: 27px;
     padding-right: 0;
   }
   th,

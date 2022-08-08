@@ -46,6 +46,7 @@ const StyledEditorMockup = styled.div`
   background-color: #272727;
   padding: 12px;
   margin: 0 -23px;
+  border-radius: 25px;
   .buttons-menu > * {
     margin-bottom: 20px;
     background-color: ${({ theme }) => theme.palette.neutral[800]};
@@ -75,6 +76,13 @@ const StyledEditorMockup = styled.div`
     -webkit-transition: background-color 0.2s linear, color 0.2s linear;
     transition: background-color 0.2s linear, color 0.2s linear;
     line-height: 1.15;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    margin: 0;
+    padding: 15px;
+    height: auto; /* TODO: change to adapt to the screen size */
+    min-height: 200px;
   }
 `;
 

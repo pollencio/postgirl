@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 type TabAreasProps = {
   tabs: string[];
@@ -53,16 +53,22 @@ const StyledTabAreas = styled.div<{ isPrimary?: boolean }>`
   .tabs {
     display: flex;
     gap: 17px;
+    & > * {
+      cursor: pointer;
+      &:not(:last-child) {
+        margin-right: 17px;
+      }
+    }
     ${(props) =>
       props.isPrimary === true
-        ? `
-        justify-content: center;
-        margin-bottom: 20px;
-        `
-        : `
-        justify-content: left;
-        margin-bottom: 30px;
-      `}
+        ? css`
+            justify-content: center;
+            margin-bottom: 20px;
+          `
+        : css`
+            justify-content: left;
+            margin-bottom: 30px;
+          `}
   }
   .metadata {
     margin-bottom: 13px;
@@ -72,6 +78,30 @@ const StyledTabAreas = styled.div<{ isPrimary?: boolean }>`
     &[data-selected='true'] {
       display: block;
     }
+  }
+
+  /* Hide primary tabs in desktop and show all its areas */
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    ${(props) =>
+      props.isPrimary === true
+        ? css`
+            .tabs {
+              display: none;
+            }
+            .areas > * {
+              display: block;
+              padding: 25px 40px 20px 40px;
+              &:last-child {
+                border-top: 1px solid
+                  ${({ theme }) => theme.palette.neutral[700]};
+              }
+            }
+          `
+        : css`
+            .areas > * {
+              padding: 0;
+            }
+          `}
   }
 `;
 
@@ -95,25 +125,25 @@ function Tab(props: TabProps) {
 }
 
 const StyledPrimaryTab = styled.h5<TabProps>`
-  color: ${(props) => props.theme.palette.neutral[500]};
+  color: ${({ theme }) => theme.palette.neutral[500]};
   text-align: center;
   padding: 8px 0;
   width: 100px;
   margin: 0;
   &[data-selected='true'] {
-    color: ${(props) => props.theme.textColor.main};
-    border-bottom: 2px solid ${(props) => props.theme.textColor.main};
+    color: ${({ theme }) => theme.textColor.main};
+    border-bottom: 2px solid ${({ theme }) => theme.textColor.main};
   }
 `;
 
 const StyledSecondaryTab = styled.p<TabProps>`
-  color: ${(props) => props.theme.palette.neutral[600]};
+  color: ${({ theme }) => theme.palette.neutral[600]};
   padding: 3px 0;
   margin: 0;
   font-weight: bold;
   &[data-selected='true'] {
-    color: ${(props) => props.theme.primary.hover};
-    border-bottom: 2px solid ${(props) => props.theme.primary.hover};
+    color: ${({ theme }) => theme.primary.hover};
+    border-bottom: 2px solid ${({ theme }) => theme.primary.hover};
   }
 `;
 

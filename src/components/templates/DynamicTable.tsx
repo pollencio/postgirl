@@ -9,7 +9,7 @@ type EventTarget = {
   value?: any;
   checked?: boolean;
 };
-type TableProps = {
+type DynamicTableProps = {
   heading?: string;
   tableKey: string;
   onTableChange: (tableObj: any) => void;
@@ -19,7 +19,7 @@ type TableProps = {
 
 const NEW_ROW_STATE: RowType = { key: '', value: '', isSelected: true };
 
-function DynamicTable(props: TableProps) {
+function DynamicTable(props: DynamicTableProps) {
   const [rows, setRows] = useState<RowType[]>([{ ...NEW_ROW_STATE }]);
 
   useEffect(() => {

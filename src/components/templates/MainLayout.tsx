@@ -26,7 +26,7 @@ const LayoutContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: ${(props) => props.theme.backgroundColor}de;
+    background: ${({ theme }) => theme.backgroundColor}de;
     z-index: 2;
     .logo {
       margin: 0;
@@ -46,7 +46,7 @@ const LayoutContainer = styled.div`
     width: 100%;
     padding: 20px 24px;
     margin: 60px 0 70px 0;
-    max-width: 500px;
+    max-width: ${({ theme }) => theme.breakpoints.sm};
   }
 
   & > nav {
@@ -57,12 +57,19 @@ const LayoutContainer = styled.div`
     width: 100%;
     background: linear-gradient(
       360deg,
-      ${(props) => props.theme.backgroundColor} 69.08%,
+      ${({ theme }) => theme.backgroundColor} 69.08%,
       rgba(250, 250, 250, 0) 88.67%
     );
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
+    & > main {
+      max-width: 100%;
+      padding: 0;
+    }
   }
 `;
 

@@ -1,6 +1,6 @@
 {
   "short_name": "Postgirl",
-  "name": "Small API testing tool",
+  "name": "Postgirl - Test your API",
   "icons": [
     {
       "src": "favicon.ico",

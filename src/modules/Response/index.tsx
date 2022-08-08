@@ -10,25 +10,27 @@ import { ResponseType } from '../../types';
 function ResponseArea() {
   const { response, error, isLoading, cancelRequest } = useAppContext();
 
-  if (Object.keys(response || {}).length === 0) {
-    return (
-      <NoResponseMessage
-        error={error}
-        isLoading={isLoading}
-        cancelRequest={cancelRequest}
-      />
-    );
-  }
-
   const { status, headers, time, size } = response;
   const headersNumber = Object.keys(headers || {}).length;
 
   return (
-    <TabAreas
-      tabs={[`Body`, `Cookies`, `Headers (${headersNumber})`]}
-      metadata={<ResponseMetadata status={status} time={time} size={size} />}
-      areas={[<ResponseBody />, <ResponseCookies />, <ResponseHeaders />]}
-    />
+    <>
+      {Object.keys(response || {}).length === 0 ? (
+        <NoResponseMessage
+          error={error}
+          isLoading={isLoading}
+          cancelRequest={cancelRequest}
+        />
+      ) : (
+        <TabAreas
+          tabs={[`Body`, `Cookies`, `Headers (${headersNumber})`]}
+          metadata={
+            <ResponseMetadata status={status} time={time} size={size} />
+          }
+          areas={[<ResponseBody />, <ResponseCookies />, <ResponseHeaders />]}
+        />
+      )}
+    </>
   );
 }
 
@@ -53,11 +55,11 @@ const StyledMetadata = styled.div`
   gap: 13px;
   font-weight: bold;
   & > *:not(:last-child) {
-    border-right: 1px solid ${(props) => props.theme.palette.neutral[400]};
+    border-right: 1px solid ${({ theme }) => theme.palette.neutral[400]};
     padding-right: 13px;
   }
   .data {
-    color: ${(props) => props.theme.palette.green[200]};
+    color: ${({ theme }) => theme.palette.green[200]};
   }
 `;
 

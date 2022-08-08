@@ -139,7 +139,7 @@ const getStateObject = (stateArray: RowType[]): { [key: string]: string } => {
 };
 
 const TableHeading = styled.p`
-  color: ${(props) => props.theme.palette.neutral[500]};
+  color: ${({ theme }) => theme.palette.neutral[500]};
   font-weight: bold;
 `;
 
@@ -149,7 +149,7 @@ const StyledTable = styled.table`
   width: 100%;
 
   th {
-    color: ${(props) => props.theme.palette.neutral[500]};
+    color: ${({ theme }) => theme.palette.neutral[500]};
   }
   tr {
     height: 40px !important;
@@ -158,17 +158,17 @@ const StyledTable = styled.table`
   th:first-child,
   td:first-child {
     padding: 8px;
-    min-width: 40px;
+    width: 40px;
   }
   th:last-child,
   td:last-child {
     border: none;
-    min-width: 27px;
+    width: 27px;
     padding-right: 0;
   }
   th,
   td {
-    border: 1px solid ${(props) => props.theme.palette.neutral[700]};
+    border: 1px solid ${({ theme }) => theme.palette.neutral[700]};
     padding: 10px;
     text-align: left;
   }

@@ -37,17 +37,12 @@ function TabAreas(props: TabAreasProps) {
 
       <div className="areas">
         {props.areas.map((area, index) => (
-          <>
-            <div
-              key={`primary-area-${index}`}
-              data-selected={selectedIndex === index}
-            >
-              {area}
-            </div>
-            {props.isPrimary && index !== props.areas.length - 1 && (
-              <DesktopDivider />
-            )}
-          </>
+          <div
+            key={`primary-area-${index}`}
+            data-selected={selectedIndex === index}
+          >
+            {area}
+          </div>
         ))}
       </div>
     </StyledTabAreas>
@@ -95,6 +90,9 @@ const StyledTabAreas = styled.div<{ isPrimary?: boolean }>`
         .areas > * {
           display: block;
           padding: 20px 40px;
+          &:last-child {
+            border-top: 1px solid ${({ theme }) => theme.palette.neutral[700]};
+          }
         }
       `}
   }
@@ -139,14 +137,6 @@ const StyledSecondaryTab = styled.p<TabProps>`
   &[data-selected='true'] {
     color: ${({ theme }) => theme.primary.hover};
     border-bottom: 2px solid ${({ theme }) => theme.primary.hover};
-  }
-`;
-
-const DesktopDivider = styled.div`
-  border-top: 1px solid ${({ theme }) => theme.palette.neutral[700]};
-  display: none;
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    display: block;
   }
 `;
 

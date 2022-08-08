@@ -82,19 +82,25 @@ const StyledTabAreas = styled.div<{ isPrimary?: boolean }>`
   /* Hide primary tabs in desktop and show all its areas */
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     ${(props) =>
-      props.isPrimary === true &&
-      css`
-        .tabs {
-          display: none;
-        }
-        .areas > * {
-          display: block;
-          padding: 20px 40px;
-          &:last-child {
-            border-top: 1px solid ${({ theme }) => theme.palette.neutral[700]};
-          }
-        }
-      `}
+      props.isPrimary === true
+        ? css`
+            .tabs {
+              display: none;
+            }
+            .areas > * {
+              display: block;
+              padding: 25px 40px 20px 40px;
+              &:last-child {
+                border-top: 1px solid
+                  ${({ theme }) => theme.palette.neutral[700]};
+              }
+            }
+          `
+        : css`
+            .areas > * {
+              padding: 0;
+            }
+          `}
   }
 `;
 

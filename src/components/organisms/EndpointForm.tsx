@@ -42,7 +42,7 @@ const EndpointFormStyled = styled.form`
   display: flex;
   margin-bottom: 25px;
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    margin: 0 40px 25px 40px;
+    margin: 20px 40px 0 40px;
   }
   button {
     position: absolute;

@@ -39,10 +39,10 @@ const NoResponseStyled = styled.div<{ error: boolean; isLoading: boolean }>`
   color: ${({ theme }) => theme.palette.neutral[600]};
   text-align: center;
   max-width: 270px;
-  padding: 30% 0;
+  margin: 30% 0;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding: 2% 0;
+    margin: 2% 0;
   }
 
   ${({ error }) => (error ? `color: ${red[200]};` : '')}/* ${({

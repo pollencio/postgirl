@@ -24,7 +24,7 @@ const NoDataStyled = styled.div`
   opacity: 50%;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding: 2% 0;
+    margin: 2% 0;
   }
 `;
 

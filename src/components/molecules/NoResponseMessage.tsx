@@ -30,7 +30,7 @@ function NoResponseMessage(props: NoResponseProps) {
 }
 
 const NoResponseStyled = styled.div<{ error: boolean; isLoading: boolean }>`
-  color: ${(props) => props.theme.palette.neutral[600]};
+  color: ${({ theme }) => theme.palette.neutral[600]};
   text-align: center;
   width: 90%;
   max-width: 270px;

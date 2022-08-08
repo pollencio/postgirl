@@ -33,7 +33,7 @@ function StaticTable({ heading, tableKey, data }: StaticTableProps) {
 }
 
 const TableHeading = styled.p`
-  color: ${(props) => props.theme.palette.neutral[500]};
+  color: ${({ theme }) => theme.palette.neutral[500]};
   font-weight: bold;
 `;
 
@@ -43,7 +43,7 @@ const StyledTable = styled.table`
   width: 100%;
 
   th {
-    color: ${(props) => props.theme.palette.neutral[500]};
+    color: ${({ theme }) => theme.palette.neutral[500]};
   }
   tr {
     height: 40px;
@@ -55,7 +55,7 @@ const StyledTable = styled.table`
   }
   th,
   td {
-    border: 1px solid ${(props) => props.theme.palette.neutral[700]};
+    border: 1px solid ${({ theme }) => theme.palette.neutral[700]};
     padding: 10px;
     text-align: left;
   }

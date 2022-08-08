@@ -47,26 +47,26 @@ const EndpointFormStyled = styled.form`
     top: 6px;
   }
   select {
-    font-family: ${(props) => props.theme.fonts.body};
-    font-size: ${(props) => props.theme.typeScale.mobile.paragraph};
-    background-color: ${(props) => props.theme.input.backgroundColor.main};
-    color: ${(props) => props.theme.textColor.main};
+    font-family: ${({ theme }) => theme.fonts.body};
+    font-size: ${({ theme }) => theme.typeScale.mobile.paragraph};
+    background-color: ${({ theme }) => theme.input.backgroundColor.main};
+    color: ${({ theme }) => theme.textColor.main};
     /* font-weight: bold; */
     margin-right: 2px;
 
     padding: 9px 5px 9px 10px;
     border-radius: 30px 0 0 30px;
-    border: 2px solid ${(props) => props.theme.input.borderColor.main};
+    border: 2px solid ${({ theme }) => theme.input.borderColor.main};
     box-sizing: border-box;
     transition: background-color 0.2s linear, color 0.2s linear,
       box-shadow 0.2s linear;
     ::placeholder {
-      color: ${(props) => props.theme.input.placeholderColor};
+      color: ${({ theme }) => theme.input.placeholderColor};
     }
     &:focus {
       outline: none;
-      box-shadow: 2px 2px 15px ${(props) => props.theme.input.focusShadowColor};
-      border-color: ${(props) => props.theme.input.borderColor.focus};
+      box-shadow: 2px 2px 15px ${({ theme }) => theme.input.focusShadowColor};
+      border-color: ${({ theme }) => theme.input.borderColor.focus};
     }
   }
   label {

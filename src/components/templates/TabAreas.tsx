@@ -80,7 +80,7 @@ const StyledTabAreas = styled.div<{ isPrimary?: boolean }>`
   }
 
   /* Hide primary tabs in desktop and show all its areas */
-  @media (min-width: 1000px) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     ${(props) =>
       props.isPrimary === true &&
       css`
@@ -114,25 +114,25 @@ function Tab(props: TabProps) {
 }
 
 const StyledPrimaryTab = styled.h5<TabProps>`
-  color: ${(props) => props.theme.palette.neutral[500]};
+  color: ${({ theme }) => theme.palette.neutral[500]};
   text-align: center;
   padding: 8px 0;
   width: 100px;
   margin: 0;
   &[data-selected='true'] {
-    color: ${(props) => props.theme.textColor.main};
-    border-bottom: 2px solid ${(props) => props.theme.textColor.main};
+    color: ${({ theme }) => theme.textColor.main};
+    border-bottom: 2px solid ${({ theme }) => theme.textColor.main};
   }
 `;
 
 const StyledSecondaryTab = styled.p<TabProps>`
-  color: ${(props) => props.theme.palette.neutral[600]};
+  color: ${({ theme }) => theme.palette.neutral[600]};
   padding: 3px 0;
   margin: 0;
   font-weight: bold;
   &[data-selected='true'] {
-    color: ${(props) => props.theme.primary.hover};
-    border-bottom: 2px solid ${(props) => props.theme.primary.hover};
+    color: ${({ theme }) => theme.primary.hover};
+    border-bottom: 2px solid ${({ theme }) => theme.primary.hover};
   }
 `;
 

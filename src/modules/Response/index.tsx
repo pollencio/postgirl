@@ -56,20 +56,20 @@ const StyledMetadata = styled.div`
   gap: 13px;
   font-weight: bold;
   & > *:not(:last-child) {
-    border-right: 1px solid ${(props) => props.theme.palette.neutral[400]};
+    border-right: 1px solid ${({ theme }) => theme.palette.neutral[400]};
     padding-right: 13px;
   }
   .data {
-    color: ${(props) => props.theme.palette.green[200]};
+    color: ${({ theme }) => theme.palette.green[200]};
   }
 `;
 
 const DesktopDivider = styled.div`
-  border-top: 1px solid ${(props) => props.theme.palette.neutral[500]};
+  border-top: 1px solid ${({ theme }) => theme.palette.neutral[500]};
   padding-top: 10px;
   display: none;
   margin-top: 30px;
-  @media (min-width: 1000px) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     display: block;
   }
 `;

@@ -22,16 +22,22 @@ const NEW_ROW_STATE: RowType = { key: '', value: '', isSelected: true };
 function DynamicTable(props: DynamicTableProps) {
   const [rows, setRows] = useState<RowType[]>([{ ...NEW_ROW_STATE }]);
 
-  useEffect(() => {
-    const lastRow = rows[rows.length - 1];
-    if (lastRow.key !== '' || lastRow.value !== '') {
-      addRow();
-    }
-  }, [addRow, rows]);
-
   const setNewState = (newRows: RowType[]) => {
     setRows(newRows);
     props.onTableChange(getStateObject(newRows)); // TODO: last item is always an empty row
+  };
+
+  const addRow = () => {
+    const newRows = [...rows];
+    newRows.push({ ...NEW_ROW_STATE });
+    setNewState(newRows);
+  };
+
+  const removeRow = (rowIndex: number) => {
+    const newRows = [...rows];
+    newRows.splice(rowIndex, 1);
+    setNewState(newRows);
+    props.onTableChange(getStateObject(newRows));
   };
 
   const handleInputChange = (
@@ -47,18 +53,12 @@ function DynamicTable(props: DynamicTableProps) {
     setNewState(newRows);
   };
 
-  const addRow = () => {
-    const newRows = [...rows];
-    newRows.push({ ...NEW_ROW_STATE });
-    setNewState(newRows);
-  };
-
-  const removeRow = (rowIndex: number) => {
-    const newRows = [...rows];
-    newRows.splice(rowIndex, 1);
-    setNewState(newRows);
-    props.onTableChange(getStateObject(newRows));
-  };
+  useEffect(() => {
+    const lastRow = rows[rows.length - 1];
+    if (lastRow.key !== '' || lastRow.value !== '') {
+      addRow();
+    }
+  }, [addRow, rows]);
 
   return (
     <>

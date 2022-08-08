@@ -1,15 +1,16 @@
 import useAppContext from '../../../state/useAppContext';
-import DynamicTable from '../../../components/templates/DynamicTable';
+import Table from '../../../components/templates/Table';
 
 function HeadersTable() {
   const { setRequestElement } = useAppContext();
 
   return (
-    <DynamicTable
+    <Table
       heading="Headers"
       tableKey="request-headers"
       buttonText="Add a header"
       onTableChange={(headers) => setRequestElement('headers', headers)}
+      isDynamic
     />
   );
 }

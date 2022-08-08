@@ -125,9 +125,9 @@ function DynamicTable({ onTableChange, ...props }: DynamicTableProps) {
   );
 }
 
-const getStateObject = (stateArray: RowType[]) => {
-  return stateArray.reduce((acc, item) => {
-    if (item.isSelected === true) {
+const getStateObject = (stateArray: RowType[]): { [key: string]: string } => {
+  return stateArray.reduce((acc, item, index) => {
+    if ((index !== stateArray.length - 1 && item.isSelected) === true) {
       return {
         ...acc,
         [item.key]: item.value,

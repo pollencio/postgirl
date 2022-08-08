@@ -65,7 +65,7 @@ const StyledMetadata = styled.div`
 `;
 
 const DesktopDivider = styled.div`
-  border-top: 1px solid ${neutral[500]};
+  border-top: 1px solid ${(props) => props.theme.palette.neutral[500]};
   padding-top: 10px;
   display: none;
   margin-top: 30px;

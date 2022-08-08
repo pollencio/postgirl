@@ -21,7 +21,6 @@ const NoDataStyled = styled.div`
   width: 90%;
   max-width: 270px;
   margin: 15% auto;
-  padding: 30% 0;
   opacity: 50%;
 
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {

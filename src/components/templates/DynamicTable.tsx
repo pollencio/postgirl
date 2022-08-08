@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Checkbox, Icon, neutral } from '@superys/momo-ui';
 
@@ -19,25 +19,22 @@ type DynamicTableProps = {
 
 const NEW_ROW_STATE: RowType = { key: '', value: '', isSelected: true };
 
-function DynamicTable(props: DynamicTableProps) {
+function DynamicTable({ onTableChange, ...props }: DynamicTableProps) {
   const [rows, setRows] = useState<RowType[]>([{ ...NEW_ROW_STATE }]);
 
-  const setNewState = (newRows: RowType[]) => {
-    setRows(newRows);
-    props.onTableChange(getStateObject(newRows)); // TODO: last item is always an empty row
-  };
-
-  const addRow = () => {
-    const newRows = [...rows];
-    newRows.push({ ...NEW_ROW_STATE });
-    setNewState(newRows);
-  };
+  const setNewState = useCallback(
+    (newRows: RowType[]) => {
+      setRows(newRows);
+      onTableChange(getStateObject(newRows)); // TODO: last item is always an empty row
+    },
+    [onTableChange],
+  );
 
   const removeRow = (rowIndex: number) => {
     const newRows = [...rows];
     newRows.splice(rowIndex, 1);
     setNewState(newRows);
-    props.onTableChange(getStateObject(newRows));
+    onTableChange(getStateObject(newRows));
   };
 
   const handleInputChange = (
@@ -53,12 +50,15 @@ function DynamicTable(props: DynamicTableProps) {
     setNewState(newRows);
   };
 
+  // add a row if the last one has been edited
   useEffect(() => {
     const lastRow = rows[rows.length - 1];
     if (lastRow.key !== '' || lastRow.value !== '') {
-      addRow();
+      const newRows = [...rows];
+      newRows.push({ ...NEW_ROW_STATE });
+      setNewState(newRows);
     }
-  }, [addRow, rows]);
+  }, [rows, setNewState]);
 
   return (
     <>

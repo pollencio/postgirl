@@ -1,7 +1,6 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Checkbox, Icon, TertiaryButton } from '@superys/momo-ui';
-import FlexContainer from '../atoms/FlexContainer';
+import { Checkbox, Icon, neutral } from '@superys/momo-ui';
 
 type RowType = { key: string; value: string; isSelected: boolean };
 type EventTarget = {
@@ -18,14 +17,24 @@ type DynamicTableProps = {
   noDataMessage?: React.ReactNode;
 };
 
-const NEW_ROW_STATE: RowType = { key: '', value: '', isSelected: false };
+const NEW_ROW_STATE: RowType = { key: '', value: '', isSelected: true };
 
-function DynamicTable(props: DynamicTableProps) {
-  const [rows, setRows] = useState<RowType[]>([]);
+function DynamicTable({ onTableChange, ...props }: DynamicTableProps) {
+  const [rows, setRows] = useState<RowType[]>([{ ...NEW_ROW_STATE }]);
 
-  const setNewState = (newRows: RowType[]) => {
-    setRows(newRows);
-    props.onTableChange(getStateObject(newRows));
+  const setNewState = useCallback(
+    (newRows: RowType[]) => {
+      setRows(newRows);
+      onTableChange(getStateObject(newRows)); // TODO: last item is always an empty row
+    },
+    [onTableChange],
+  );
+
+  const removeRow = (rowIndex: number) => {
+    const newRows = [...rows];
+    newRows.splice(rowIndex, 1);
+    setNewState(newRows);
+    onTableChange(getStateObject(newRows));
   };
 
   const handleInputChange = (
@@ -41,18 +50,15 @@ function DynamicTable(props: DynamicTableProps) {
     setNewState(newRows);
   };
 
-  const addRow = () => {
-    const newRows = [...rows];
-    newRows.push({ ...NEW_ROW_STATE });
-    setNewState(newRows);
-  };
-
-  const removeRow = (rowIndex: number) => {
-    const newRows = [...rows];
-    newRows.splice(rowIndex, 1);
-    setNewState(newRows);
-    props.onTableChange(getStateObject(newRows));
-  };
+  // add a row if the last one has been edited
+  useEffect(() => {
+    const lastRow = rows[rows.length - 1];
+    if (lastRow.key !== '' || lastRow.value !== '') {
+      const newRows = [...rows];
+      newRows.push({ ...NEW_ROW_STATE });
+      setNewState(newRows);
+    }
+  }, [rows, setNewState]);
 
   return (
     <>
@@ -74,11 +80,13 @@ function DynamicTable(props: DynamicTableProps) {
             {rows.map((row, index) => (
               <tr key={`${props.tableKey}-table-row-${index}`}>
                 <td>
-                  <Checkbox
-                    name="isSelected"
-                    checked={row.isSelected}
-                    onChange={(e) => handleInputChange(e, index)}
-                  />
+                  {index !== rows.length - 1 && (
+                    <Checkbox
+                      name="isSelected"
+                      checked={row.isSelected}
+                      onChange={(e) => handleInputChange(e, index)}
+                    />
+                  )}
                 </td>
                 <td>
                   <input
@@ -96,27 +104,30 @@ function DynamicTable(props: DynamicTableProps) {
                     onChange={(e) => handleInputChange(e, index)}
                   />
                 </td>
-                <td onClick={() => removeRow(index)}>
-                  <Icon icon="trash" weight="bold" />
-                </td>
+                {index === rows.length - 1 ? (
+                  <td></td>
+                ) : (
+                  <td onClick={() => removeRow(index)}>
+                    <Icon
+                      icon="x"
+                      weight="bold"
+                      size={17}
+                      color={neutral[600]}
+                    />
+                  </td>
+                )}
               </tr>
             ))}
           </tbody>
         </StyledTable>
       )}
-
-      <FlexContainer justifyContent="center">
-        <TertiaryButton modifiers="small" onClick={addRow}>
-          {props.buttonText}
-        </TertiaryButton>
-      </FlexContainer>
     </>
   );
 }
 
-const getStateObject = (stateArray: RowType[]) => {
-  return stateArray.reduce((acc, item) => {
-    if (item.isSelected === true) {
+const getStateObject = (stateArray: RowType[]): { [key: string]: string } => {
+  return stateArray.reduce((acc, item, index) => {
+    if ((index !== stateArray.length - 1 && item.isSelected) === true) {
       return {
         ...acc,
         [item.key]: item.value,
@@ -146,12 +157,14 @@ const StyledTable = styled.table`
 
   th:first-child,
   td:first-child {
-    padding: 8px 9px 8px 8px;
+    padding: 8px;
+    min-width: 40px;
   }
   th:last-child,
   td:last-child {
     border: none;
-    min-width: 22px;
+    min-width: 27px;
+    padding-right: 0;
   }
   th,
   td {
@@ -159,7 +172,9 @@ const StyledTable = styled.table`
     padding: 10px;
     text-align: left;
   }
-  input {
+  input:not([type='checkbox']) {
+    color: ${(props) =>
+      props.theme.palette.neutral[100]}; // TODO: remove when fixed on momo-ui
     background: none;
     border: none;
     width: 100%;

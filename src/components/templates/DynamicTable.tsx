@@ -27,7 +27,7 @@ function DynamicTable(props: DynamicTableProps) {
     if (lastRow.key !== '' || lastRow.value !== '') {
       addRow();
     }
-  }, [rows]);
+  }, [addRow, rows]);
 
   const setNewState = (newRows: RowType[]) => {
     setRows(newRows);

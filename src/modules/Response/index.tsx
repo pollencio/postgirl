@@ -15,7 +15,6 @@ function ResponseArea() {
 
   return (
     <>
-      <DesktopDivider>Response</DesktopDivider>
       {Object.keys(response || {}).length === 0 ? (
         <NoResponseMessage
           error={error}
@@ -61,16 +60,6 @@ const StyledMetadata = styled.div`
   }
   .data {
     color: ${({ theme }) => theme.palette.green[200]};
-  }
-`;
-
-const DesktopDivider = styled.div`
-  border-top: 1px solid ${({ theme }) => theme.palette.neutral[500]};
-  padding-top: 10px;
-  display: none;
-  margin-top: 30px;
-  @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    display: block;
   }
 `;
 

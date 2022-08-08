@@ -42,11 +42,11 @@ const EndpointFormStyled = styled.form`
   display: flex;
   margin-bottom: 25px;
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
-    padding: 0 40px;
+    margin: 0 40px 25px 40px;
   }
   button {
     position: absolute;
-    right: 20px;
+    right: 6px;
     top: 6px;
   }
   select {

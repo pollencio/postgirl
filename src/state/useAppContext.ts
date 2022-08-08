@@ -7,7 +7,7 @@ import { StateType, RequestType, ResponseType } from '../types';
 function useAppContext() {
   const { state, setState } = useContext(AppContext);
   const { request, response, error, isLoading } = state;
-  console.log('live changes to state!', state);
+  // console.log('live changes to state!', state);
 
   const setStateElement = (key: string, value: any) => {
     setState((prevState: StateType) => ({ ...prevState, [key]: value }));

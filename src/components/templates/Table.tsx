@@ -24,7 +24,6 @@ function Table({ isDynamic = false, ...props }: TableProps) {
   const [rows, setRows] = useState<RowType[]>([{ ...NEW_ROW_STATE }]);
 
   useEffect(() => {
-    console.log(rows);
     const lastRow = rows[rows.length - 1];
     if (lastRow.key !== '' || lastRow.value !== '') {
       addRow();
